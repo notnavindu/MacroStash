@@ -1,4 +1,4 @@
-import { api } from '..';
+import { api } from '.';
 
 export const testProfile = async () => {
 	return await api.get('/hello').then((res) => {

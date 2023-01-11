@@ -1,0 +1,12 @@
+import { z } from 'zod';
+
+export const projectSchema = z
+	.object({
+		id: z.string().optional(),
+		name: z.string().max(30),
+		allowedDomains: z.array(z.string().url()),
+		createdAt: z.date().optional()
+	})
+	.strip();
+
+export type Project = z.infer<typeof projectSchema>;

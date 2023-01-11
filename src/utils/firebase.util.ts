@@ -9,8 +9,7 @@ import {
 	PUBLIC_FIREBASE_PROJECT_ID,
 	PUBLIC_FIREBASE_STORAGE_BUCKET,
 	PUBLIC_FIREBASE_MESSAGE_SENDER_ID,
-	PUBLIC_FIREBASE_APP_ID,
-	PUBLIC_FIREBASE_MEASUREMENT_ID
+	PUBLIC_FIREBASE_APP_ID
 } from '$env/static/public';
 import { goto } from '$app/navigation';
 
@@ -25,8 +24,7 @@ export const initilizeFirebase = async () => {
 		projectId: PUBLIC_FIREBASE_PROJECT_ID,
 		storageBucket: PUBLIC_FIREBASE_STORAGE_BUCKET,
 		messagingSenderId: PUBLIC_FIREBASE_MESSAGE_SENDER_ID,
-		appId: PUBLIC_FIREBASE_APP_ID,
-		measurementId: PUBLIC_FIREBASE_MEASUREMENT_ID
+		appId: PUBLIC_FIREBASE_APP_ID
 	};
 
 	console.log(firebaseConfig);

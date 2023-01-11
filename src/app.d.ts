@@ -2,17 +2,31 @@
 // for information about these interfaces
 
 import type { User } from 'firebase/auth';
+import type { ZodFormattedError } from 'zod';
 
 // and what to do when importing types
-declare namespace App {
-	// interface Error {}
-	// interface Locals {}
-	// interface PageData {}
-	// interface Platform {}
+
+declare global {
+	declare namespace App {
+		interface Error {
+			errors?: ZodFormattedError;
+		}
+		// interface Locals {}
+		// interface PageData {}
+		// interface Platform {}
+	}
 }
 
 interface FirebaseAuthStore {
 	isLoggedIn: boolean;
 	user: User | null;
 	loading: boolean;
+}
+
+interface Event {
+	id: string;
+	message: string;
+	level: 'debug' | 'info' | 'warn' | 'error' | 'fatal';
+	stackTrace?: string;
+	timestamp: Date;
 }
