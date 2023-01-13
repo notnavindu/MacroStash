@@ -14,9 +14,9 @@
 {#if loggedIn}
 	<main class="w-full h-screen bg-color-black-blueish text-white">
 		<div class="w-72 bg-color-black fixed left-0 top-0 h-screen">
-			<div class="text-2xl  p-4">MacroStash</div>
+			<div class="text-2xl p-4 mt-4">MacroStash</div>
 
-			<div class="mt-12 flex flex-col p-4">
+			<div class="mt-2 flex flex-col p-4">
 				<div
 					class="h-full bg-color-blue rounded-md px-6 py-2
 							 bg-opacity-20 relative "
