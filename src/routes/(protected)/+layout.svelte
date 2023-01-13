@@ -1,41 +1,44 @@
 <script>
 	import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
-	import { firebaseAuthStore, user } from '$stores/auth.store';
+	import Sidebar from '$lib/components/common/Sidebar.svelte';
+	import { firebaseAuthStore } from '$stores/auth.store';
+	import { fly } from 'svelte/transition';
+	import Icon from '@iconify/svelte';
+	import { page } from '$app/stores';
 
 	let loggedIn = false;
+	let innerWidth = 0;
+	let show = false;
 
 	if (browser) {
 		if ($firebaseAuthStore.user !== null) loggedIn = true;
 		else goto(`/login`);
 	}
+
+	$: collapsable = innerWidth <= 768;
+	$: $page.url.pathname && (show = false);
 </script>
+
+<svelte:window bind:innerWidth />
 
 {#if loggedIn}
 	<main class="w-full h-screen bg-color-black-blueish text-white">
-		<div class="w-72 bg-color-black fixed left-0 top-0 h-screen">
-			<div class="text-2xl p-4 mt-4">MacroStash</div>
+		<Sidebar {collapsable} bind:show />
 
-			<div class="mt-2 flex flex-col p-4">
-				<div
-					class="h-full bg-color-blue rounded-md px-6 py-2
-							 bg-opacity-20 relative "
-				>
-					<div class="w-2 h-full bg-color-blue rounded-l-md absolute left-0 top-0 generic-glow" />
-					<div>Events</div>
-				</div>
-
-				<div
-					class="h-full  rounded-md px-6 py-2
-							 bg-opacity-20 relative "
-				>
-					<!-- <div class="w-2 h-full bg-color-blue rounded-l-md absolute left-0 top-0 generic-glow" /> -->
-					<div>Coutner</div>
-				</div>
+		{#if collapsable}
+			<div
+				class="bg-color-black flex items-center py-3 px-3 gap-4 text-xl"
+				transition:fly={{ y: -30 }}
+			>
+				<button on:click={() => (show = true)}>
+					<Icon icon="cil:hamburger-menu" />
+				</button>
+				<div>MacroStash</div>
 			</div>
-		</div>
+		{/if}
 
-		<div class="ml-72">
+		<div class:ml-72={!collapsable}>
 			<slot />
 		</div>
 	</main>
