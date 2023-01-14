@@ -34,6 +34,12 @@
 			/>
 
 			<SidebarTab
+				name="Projects"
+				href="/projects"
+				selected={$page.url.pathname.startsWith('/projects')}
+			/>
+
+			<SidebarTab
 				name="Counters"
 				href="/counter"
 				selected={$page.url.pathname.startsWith('/counter')}
@@ -42,6 +48,31 @@
 
 		<div class="px-4">
 			<div class="h-px w-full bg-color-gray-light opacity-50 my-5" />
+		</div>
+
+		<div class="px-4">
+			<div class="opacity-50">Filter by status</div>
+
+			<div class="flex flex-wrap  gap-2 mt-2">
+				<div
+					class="px-3 py-1 border-2 border-color-gray-light rounded-md flex items-center justify-center gap-2"
+				>
+					<Icon icon="bx:loader" class="text-xl" /> All
+				</div>
+
+				<div
+					class="px-3 py-1 border-2 border-yellow-400 rounded-md flex items-center justify-center gap-2"
+				>
+					<Icon icon="material-symbols:warning" class="text-yellow-400 text-xl" /> Warning
+				</div>
+
+				<div
+					class="px-3 py-1 border-2 border-color-blue rounded-md flex items-center justify-center gap-2 bg-color-blue generic-glow"
+				>
+					<Icon icon="material-symbols:info" class="text-color-black text-xl" />
+					<span class="text-color-black font-bold"> Info </span>
+				</div>
+			</div>
 		</div>
 	</div>
 {/if}

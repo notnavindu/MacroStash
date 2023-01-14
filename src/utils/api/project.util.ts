@@ -9,6 +9,6 @@ export const createProject = async (data: Project) => {
 
 export const getAllProjects = async () => {
 	return await api.get('/projects').then((res) => {
-		return res.data.projects;
+		return res.data.projects as Project[];
 	});
 };

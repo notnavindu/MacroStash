@@ -6,7 +6,11 @@
 	export let selected = false;
 </script>
 
-<a {href} class="h-full rounded-md px-6 py-2 bg-opacity-10 relative" class:bg-color-blue={selected}>
+<a
+	{href}
+	class="h-full rounded-md px-6 py-2 bg-opacity-10 relative border-color-blue"
+	class:bg-color-blue={selected}
+>
 	{#if selected}
 		<div
 			class="w-2 h-full bg-color-blue rounded-l-md absolute left-0 top-0 generic-glow"

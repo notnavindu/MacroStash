@@ -38,7 +38,7 @@
 			</div>
 		{/if}
 
-		<div class:ml-72={!collapsable}>
+		<div class="p-4 md:p-6" class:ml-72={!collapsable}>
 			<slot />
 		</div>
 	</main>

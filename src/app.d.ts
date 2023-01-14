@@ -22,11 +22,3 @@ interface FirebaseAuthStore {
 	user: User | null;
 	loading: boolean;
 }
-
-interface Event {
-	id: string;
-	message: string;
-	level: 'debug' | 'info' | 'warn' | 'error' | 'fatal';
-	stackTrace?: string;
-	timestamp: Date;
-}
