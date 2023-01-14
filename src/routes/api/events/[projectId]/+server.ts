@@ -1,8 +1,14 @@
 import { initializeApp, getApps, type ServiceAccount, cert } from 'firebase-admin/app';
 import { getAuth } from 'firebase-admin/auth';
+import { getFirestore } from 'firebase-admin/firestore';
+
+import type { RequestHandler } from '../$types';
+import { z } from 'zod';
 
 import config from '$config/firebase-config.json';
 import { error, json } from '@sveltejs/kit';
+import { eventSchema, type Event } from '$lib/schemas/event.schema';
+import type { Project } from '$lib/schemas/project.schema';
 
 if (getApps().length === 0) {
 	initializeApp({
@@ -10,16 +16,36 @@ if (getApps().length === 0) {
 	});
 }
 
-export async function GET({ request }: any) {
-	const token = request.headers.get('firebase-token');
+export const POST = (async ({ request, getClientAddress, params }) => {
+	let event = (await request.json()) as Partial<Event>;
+	event.timestamp = new Date();
 
-	if (!token) throw error(403, { message: 'No token' });
-	const auth = getAuth();
+	const clientIp = getClientAddress();
 
-	return auth.verifyIdToken(token).then((decoded) => {
-		console.log(decoded.email);
-		return json({ user: decoded });
+	// @ts-ignore
+	const projectId = params.projectId;
+
+	try {
+		eventSchema.parse(event);
+	} catch (err) {
+		if (err instanceof z.ZodError) {
+			throw error(400, { message: 'Request body error', errors: err.format() });
+		}
+	}
+
+	const db = await getFirestore();
+
+	const project = (await db.collection('projects').doc(projectId).get()).data() as Project;
+
+	if (!project) throw error(400, { message: 'Invalid project Id' });
+	if (!project.allowedDomains.includes(clientIp))
+		throw error(400, {
+			message: `Requests from ${clientIp} are not allowed. Add ${clientIp} to whitelist of this project`
+		});
+
+	const res = await db.collection('events').add(event);
+
+	return json({
+		success: true
 	});
-
-	return json({ status: 'sdkfjh' });
-}
+}) satisfies RequestHandler;
