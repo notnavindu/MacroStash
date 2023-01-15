@@ -1,8 +1,8 @@
 import { initializeApp, getApps, type ServiceAccount, cert } from 'firebase-admin/app';
 import { getAuth } from 'firebase-admin/auth';
 
-import config from '$config/firebase-config.json';
 import { error, json } from '@sveltejs/kit';
+import { config } from 'src/config/firebaseConfig';
 
 if (getApps().length === 0) {
 	initializeApp({

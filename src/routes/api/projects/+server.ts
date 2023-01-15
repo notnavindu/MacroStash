@@ -5,9 +5,9 @@ import { getFirestore } from 'firebase-admin/firestore';
 import type { RequestHandler } from './$types';
 import { z } from 'zod';
 
-import config from '$config/firebase-config.json';
 import { error, json } from '@sveltejs/kit';
 import { projectSchema, type Project } from '$lib/schemas/project.schema';
+import { config } from 'src/config/firebaseConfig';
 
 if (getApps().length === 0) {
 	initializeApp({

@@ -5,13 +5,10 @@ import { getFirestore } from 'firebase-admin/firestore';
 import type { RequestHandler } from '../$types';
 import { z } from 'zod';
 
-// import config from '$config/firebase-config.json';
 import { error, json } from '@sveltejs/kit';
 import { eventSchema, type Event } from '$lib/schemas/event.schema';
 import type { Project } from '$lib/schemas/project.schema';
-import { FIREBASE_SERVICE_ACCOUNT } from '$env/static/private';
-
-const config = JSON.parse(FIREBASE_SERVICE_ACCOUNT);
+import { config } from 'src/config/firebaseConfig';
 
 if (getApps().length === 0) {
 	initializeApp({
