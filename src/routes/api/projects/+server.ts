@@ -7,7 +7,7 @@ import { z } from 'zod';
 
 import { error, json } from '@sveltejs/kit';
 import { projectSchema, type Project } from '$lib/schemas/project.schema';
-import { config } from 'src/config/firebaseConfig';
+import { config } from '$config/firebaseConfig';
 
 if (getApps().length === 0) {
 	initializeApp({
