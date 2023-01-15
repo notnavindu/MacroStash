@@ -12,10 +12,9 @@ import {
 	PUBLIC_FIREBASE_APP_ID
 } from '$env/static/public';
 import { goto } from '$app/navigation';
+import { handleLogin } from './api/user.util';
 
 export const initilizeFirebase = async () => {
-	console.log('init');
-
 	if ((await get(firebaseStore)) !== null) return;
 
 	let firebaseConfig = {
@@ -35,7 +34,9 @@ export const initilizeFirebase = async () => {
 	firebaseStore.set(app);
 
 	auth.onAuthStateChanged(async (user) => {
-		console.log('state changed', user);
+		if (user) {
+			await handleLogin(await user.getIdToken());
+		}
 
 		firebaseAuthStore.set({
 			isLoggedIn: user !== null,
@@ -46,7 +47,5 @@ export const initilizeFirebase = async () => {
 		if (!user) {
 			goto('/');
 		}
-
-		console.log(await get(firebaseAuthStore));
 	});
 };

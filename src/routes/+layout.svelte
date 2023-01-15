@@ -9,6 +9,8 @@
 	if (browser) initilizeFirebase();
 </script>
 
-{#if !$firebaseAuthStore.loading}
+{#if $firebaseAuthStore.loading}
+	<div>Loading</div>
+{:else}
 	<slot />
 {/if}

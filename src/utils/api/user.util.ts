@@ -1,7 +1,7 @@
-import { api } from '.';
+import axios from 'axios';
 
-export const testProfile = async () => {
-	return await api.get('/hello').then((res) => {
-		return res.data;
+export const handleLogin = async (token: string) => {
+	return await axios.get('/api/user', { headers: { 'firebase-token': token } }).then((res) => {
+		return res.data?.user;
 	});
 };
