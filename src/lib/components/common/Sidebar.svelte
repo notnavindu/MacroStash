@@ -3,13 +3,17 @@
 	import { fly } from 'svelte/transition';
 	import SidebarTab from './SidebarTab.svelte';
 	import Icon from '@iconify/svelte';
+	import SidebarFilters from './SidebarFilters.svelte';
 
 	export let collapsable = false;
 	export let show = false;
 </script>
 
 {#if !collapsable || (collapsable && show)}
-	<div class="w-72 bg-color-black fixed left-0 top-0 h-screen" transition:fly={{ x: -300 }}>
+	<div
+		class="w-72 bg-color-black fixed left-0 top-0 h-screen overflow-hidden"
+		transition:fly={{ x: -300 }}
+	>
 		<div class="w-full text-2xl p-4 mt-4 flex justify-between">
 			<span>MacroStash</span>
 
@@ -53,25 +57,8 @@
 		<div class="px-4">
 			<div class="opacity-50">Filter by status</div>
 
-			<div class="flex flex-wrap  gap-2 mt-2">
-				<div
-					class="px-3 py-1 border-2 border-color-gray-light rounded-md flex items-center justify-center gap-2"
-				>
-					<Icon icon="bx:loader" class="text-xl" /> All
-				</div>
-
-				<div
-					class="px-3 py-1 border-2 border-yellow-400 rounded-md flex items-center justify-center gap-2"
-				>
-					<Icon icon="material-symbols:warning" class="text-yellow-400 text-xl" /> Warning
-				</div>
-
-				<div
-					class="px-3 py-1 border-2 border-color-blue rounded-md flex items-center justify-center gap-2 bg-color-blue generic-glow"
-				>
-					<Icon icon="material-symbols:info" class="text-color-black text-xl" />
-					<span class="text-color-black font-bold"> Info </span>
-				</div>
+			<div class="flex flex-wrap  gap-3 mt-2">
+				<SidebarFilters />
 			</div>
 		</div>
 	</div>

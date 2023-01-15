@@ -23,7 +23,7 @@
 <svelte:window bind:innerWidth />
 
 {#if loggedIn}
-	<main class="w-full h-screen bg-color-black-blueish text-white">
+	<main class="w-full min-h-screen bg-color-black-blueish text-white">
 		<Sidebar {collapsable} bind:show />
 
 		{#if collapsable}
@@ -38,7 +38,7 @@
 			</div>
 		{/if}
 
-		<div class="p-4 md:p-6" class:ml-72={!collapsable}>
+		<div class="h-full p-4 md:p-6" class:ml-72={!collapsable}>
 			<slot />
 		</div>
 	</main>

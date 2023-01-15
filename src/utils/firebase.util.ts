@@ -13,6 +13,7 @@ import {
 } from '$env/static/public';
 import { goto } from '$app/navigation';
 import { handleLogin } from './api/user.util';
+import { getFirestore } from 'firebase/firestore';
 
 export const initilizeFirebase = async () => {
 	if ((await get(firebaseStore)) !== null) return;
