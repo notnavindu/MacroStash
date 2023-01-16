@@ -18,12 +18,14 @@ if (getApps().length === 0) {
 
 export const POST = (async ({ request, getClientAddress, params }) => {
 	let event = (await request.json()) as Partial<Event>;
-	event.timestamp = new Date();
 
 	const clientIp = getClientAddress();
 
 	// @ts-ignore
 	const projectId = params.projectId;
+
+	event.timestamp = new Date();
+	event.projectId = projectId;
 
 	try {
 		eventSchema.parse(event);
@@ -38,7 +40,7 @@ export const POST = (async ({ request, getClientAddress, params }) => {
 	const project = (await db.collection('projects').doc(projectId).get()).data() as Project;
 
 	if (!project) throw error(400, { message: 'Invalid project Id' });
-	if (!project.allowedDomains.includes(clientIp))
+	if (!project.allowedDomains.includes('*') && !project.allowedDomains.includes(clientIp))
 		throw error(400, {
 			message: `Requests from ${clientIp} are not allowed. Add ${clientIp} to whitelist of this project`
 		});
