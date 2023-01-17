@@ -9,3 +9,11 @@ body {
 .generic-glow {
 	box-shadow: 0px 0px 20px 2px #2a71fc;
 }
+
+input,
+textarea,
+button,
+select,
+a {
+	-webkit-tap-highlight-color: transparent;
+}
