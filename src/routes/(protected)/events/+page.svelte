@@ -3,22 +3,25 @@
 	import type { Event } from '$lib/schemas/event.schema';
 	import { filters } from '$stores/filters.store';
 	import Icon from '@iconify/svelte';
-	import { getFirestore } from 'firebase/firestore';
-	import { collection, onSnapshot } from 'firebase/firestore';
+	import { collection, getFirestore, onSnapshot, orderBy, query } from 'firebase/firestore';
 	import { onDestroy } from 'svelte';
 	import { flip } from 'svelte/animate';
+	import formatDistanceStrict from 'date-fns/formatDistanceStrict';
 
 	const db = getFirestore();
 	let events: Event[] = [];
 
-	const unsubscribe = onSnapshot(collection(db, 'events'), (snap) => {
-		events = snap.docs.map((doc) => {
-			return {
-				id: doc.id,
-				...doc.data()
-			} as Event;
-		});
-	});
+	const unsubscribe = onSnapshot(
+		query(collection(db, 'events'), orderBy('timestamp', 'desc')),
+		(snap) => {
+			events = snap.docs.map((doc) => {
+				return {
+					id: doc.id,
+					...doc.data()
+				} as Event;
+			});
+		}
+	);
 
 	onDestroy(unsubscribe);
 </script>
@@ -52,7 +55,9 @@
 					</td>
 					<td class="px-6 py-4 whitespace-nowrap"> {event.message} </td>
 					<td class="px-6 py-4"> FIX ME </td>
-					<td class="px-6 py-4"> 3 hours ago</td>
+					<td class="px-6 py-4">
+						{formatDistanceStrict(event.timestamp.toDate(), new Date())} ago</td
+					>
 				</tr>
 			{/each}
 		</tbody>

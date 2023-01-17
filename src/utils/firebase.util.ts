@@ -13,7 +13,6 @@ import {
 } from '$env/static/public';
 import { goto } from '$app/navigation';
 import { handleLogin } from './api/user.util';
-import { getFirestore } from 'firebase/firestore';
 
 export const initilizeFirebase = async () => {
 	if ((await get(firebaseStore)) !== null) return;
@@ -26,8 +25,6 @@ export const initilizeFirebase = async () => {
 		messagingSenderId: PUBLIC_FIREBASE_MESSAGE_SENDER_ID,
 		appId: PUBLIC_FIREBASE_APP_ID
 	};
-
-	console.log(firebaseConfig);
 
 	const app = initializeApp(firebaseConfig);
 	const auth = getAuth();

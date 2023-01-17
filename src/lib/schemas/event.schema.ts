@@ -7,7 +7,7 @@ export const eventSchema = z
 		id: z.string().optional(),
 		message: z.string(),
 		level: z.enum(LOG_LEVELS),
-		timestamp: z.date().optional(),
+		timestamp: z.any().optional(),
 		projectId: z.string()
 	})
 	.strip();
