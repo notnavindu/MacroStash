@@ -4,6 +4,7 @@
 	import { filters } from '$stores/filters.store';
 	import Icon from '@iconify/svelte';
 	import type { FilterList } from 'src/app';
+	import { fly } from 'svelte/transition';
 
 	const setAll = () => {
 		if ($filters.length == 4) return ($filters = []);
@@ -17,25 +18,50 @@
 	};
 </script>
 
-<button
+<!-- <button
 	on:click={setAll}
 	class="px-3 py-1 border-2 border-white rounded-md flex items-center justify-center gap-2"
 	class:glow={$filters.length == 4}
 	style="--color: #ffffff"
 >
 	<Icon icon="bx:loader" class="text-xl" /> All
+</button> -->
+
+<button
+	class="w-full h-full rounded-md px-6 py-2 flex items-center relative gap-3"
+	class:selected={$filters.length == 4}
+	style="--color: #ffffff1a"
+	on:click={setAll}
+>
+	{#if $filters.length == 4}
+		<div
+			class="w-2 h-full rounded-l-md absolute left-0 top-0 glow selected"
+			style="--color: #ffffff"
+			transition:fly={{ x: -10 }}
+		/>
+	{/if}
+
+	<Icon icon="bx:loader" class="text-xl" />
+	<div>All</div>
 </button>
 
-{#each filtersList as filter}
+{#each filtersList as filter, i}
 	<button
+		class="w-full h-full rounded-md px-6 py-2 flex items-center relative gap-3 transition-colors duration-200"
+		class:selected={$filters.includes(filter.value)}
+		style="--color: {filter.color + '1a'}"
 		on:click={() => selectFilter(filter.value)}
-		class="px-3 py-1 border-2 rounded-md flex items-center justify-center gap-2 btn text-black transition-all duration-1000"
-		class:grayscale={!$filters.includes(filter.value)}
-		class:glow={$filters.includes(filter.value)}
-		style="--color: {filter.color}"
 	>
+		{#if $filters.includes(filter.value)}
+			<div
+				class="w-2 h-full rounded-l-md absolute left-0 top-0 glow selected"
+				style="--color: {filter.color}"
+				transition:fly={{ x: -10, delay: i * 60 }}
+			/>
+		{/if}
+
 		<Icon icon={filter.icon} class="text-xl" />
-		<span class="font-bold"> {filter.title} </span>
+		<div>{filter.title}</div>
 	</button>
 {/each}
 
@@ -46,6 +72,10 @@
 	}
 
 	.glow {
-		box-shadow: 0px 0px 120px 2px var(--color);
+		box-shadow: 0px 0px 20px 2px var(--color);
+	}
+
+	.selected {
+		background-color: var(--color);
 	}
 </style>

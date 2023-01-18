@@ -39,6 +39,7 @@
 		"date-fns": "^2.29.3",
 		"firebase": "^9.15.0",
 		"firebase-admin": "^11.4.1",
+		"tailwind-scrollbar-hide": "^1.1.7",
 		"zod": "^3.20.2"
 	}
 }
