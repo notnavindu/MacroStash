@@ -1,11 +1,14 @@
 <script lang="ts">
 	import { Circle } from 'svelte-loading-spinners';
 	import { fly } from 'svelte/transition';
+
 	export let loading = false;
+	export let primary = false;
 </script>
 
 <button
-	class="w-full bg-color-gray-light bg-opacity-30 text-white h-8 rounded-md flex items-center justify-center select-none overflow-hidden"
+	class="w-full bg-color-gray-light text-white h-8 rounded-md flex items-center justify-center select-none overflow-hidden"
+	class:bg-color-blue={primary}
 	on:click
 >
 	{#if loading}

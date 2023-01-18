@@ -1,5 +1,5 @@
 import type { Project } from '$lib/schemas/project.schema';
-import { collection, getDocs, getFirestore } from 'firebase/firestore';
+import { collection, doc, getDocs, getFirestore, setDoc } from 'firebase/firestore';
 import { api } from '.';
 
 export const createProject = async (data: Project) => {
@@ -15,4 +15,12 @@ export const getAllProjects = async () => {
 			...doc.data()
 		};
 	}) as Project[];
+};
+
+export const updateProject = async (project: Project) => {
+	return await setDoc(
+		doc(getFirestore(), 'projects', project.id!),
+		{ ...project },
+		{ merge: true }
+	);
 };

@@ -7,18 +7,21 @@
 	import { onMount } from 'svelte';
 
 	import { toSvg } from 'jdenticon';
-	import { fade, fly } from 'svelte/transition';
+	import { fly } from 'svelte/transition';
+	import EditProjectModal from '$lib/components/Modals/EditProjectModal.svelte';
 
 	let projects: Project[] = [];
+	let selected: Project | null;
 	let createModalOpen = false;
 
 	onMount(async () => {
 		projects = await getAllProjects();
 	});
 
-	const handleProjectCreate = async () => {
+	const refresh = async () => {
 		projects = await getAllProjects();
 		createModalOpen = false;
+		selected = null;
 	};
 </script>
 
@@ -34,7 +37,8 @@
 
 <div class="flex flex-wrap gap-4 mt-9 w-full justify-center lg:justify-star">
 	{#each projects as project, i (project.id)}
-		<div
+		<button
+			on:click={() => (selected = project)}
 			in:fly={{ y: 50, delay: i * 50 }}
 			class="w-full aspect-square max-w-[250px] bg-color-gray-light bg-opacity-20 
 					flex items-center justify-center flex-col gap-4 rounded-lg"
@@ -44,14 +48,19 @@
 			</div>
 
 			<div class="text-xl">{project.name}</div>
-		</div>
+		</button>
 	{/each}
 </div>
 
 {#if createModalOpen}
-	<CreateProjectModal
-		on:ProjectCreate={handleProjectCreate}
-		on:ModalClose={() => (createModalOpen = false)}
+	<CreateProjectModal on:ProjectCreate={refresh} on:ModalClose={() => (createModalOpen = false)} />
+{/if}
+
+{#if selected}
+	<EditProjectModal
+		bind:selected
+		on:ProjectEdit={refresh}
+		on:ModalClose={() => (selected = null)}
 	/>
 {/if}
 
