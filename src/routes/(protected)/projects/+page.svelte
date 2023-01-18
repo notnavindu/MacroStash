@@ -2,7 +2,12 @@
 	import CreateProjectModal from '$lib/components/Modals/CreateProjectModal.svelte';
 	import type { Project } from '$lib/schemas/project.schema';
 	import { getAllProjects } from '$utils/api/project.util';
+	import { getDocs, getFirestore } from 'firebase/firestore';
+	import { collection } from 'firebase/firestore';
 	import { onMount } from 'svelte';
+
+	import { toSvg } from 'jdenticon';
+	import { fade, fly } from 'svelte/transition';
 
 	let projects: Project[] = [];
 	let createModalOpen = false;
@@ -27,9 +32,21 @@
 	</button>
 </div>
 
-{#each projects as project}
-	{project.name} <br />
-{/each}
+<div class="flex flex-wrap gap-4 mt-9 w-full justify-center lg:justify-star">
+	{#each projects as project, i (project.id)}
+		<div
+			in:fly={{ y: 50, delay: i * 50 }}
+			class="w-full aspect-square max-w-[250px] bg-color-gray-light bg-opacity-20 
+					flex items-center justify-center flex-col gap-4 rounded-lg"
+		>
+			<div>
+				{@html toSvg(project.name, 140)}
+			</div>
+
+			<div class="text-xl">{project.name}</div>
+		</div>
+	{/each}
+</div>
 
 {#if createModalOpen}
 	<CreateProjectModal

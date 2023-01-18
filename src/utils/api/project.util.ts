@@ -1,4 +1,5 @@
 import type { Project } from '$lib/schemas/project.schema';
+import { collection, getDocs, getFirestore } from 'firebase/firestore';
 import { api } from '.';
 
 export const createProject = async (data: Project) => {
@@ -8,7 +9,10 @@ export const createProject = async (data: Project) => {
 };
 
 export const getAllProjects = async () => {
-	return await api.get('/projects').then((res) => {
-		return res.data.projects as Project[];
-	});
+	return (await getDocs(collection(getFirestore(), 'projects'))).docs.map((doc) => {
+		return {
+			id: doc.id,
+			...doc.data()
+		};
+	}) as Project[];
 };

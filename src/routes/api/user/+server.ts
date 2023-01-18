@@ -27,8 +27,10 @@ export const GET = (async ({ request }) => {
 		let user = (await db.collection('users').doc(decoded.uid).get()).data();
 
 		if (!user) {
-			user = { email: decoded.email };
+			const count = (await db.collection('users').count().get()).data().count;
+			if (count > 0) throw error(403, 'Unauthorized');
 
+			user = { email: decoded.email };
 			await db.collection('users').doc(decoded.uid).set(user);
 		}
 
