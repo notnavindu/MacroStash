@@ -18,15 +18,6 @@
 	};
 </script>
 
-<!-- <button
-	on:click={setAll}
-	class="px-3 py-1 border-2 border-white rounded-md flex items-center justify-center gap-2"
-	class:glow={$filters.length == 4}
-	style="--color: #ffffff"
->
-	<Icon icon="bx:loader" class="text-xl" /> All
-</button> -->
-
 <button
 	class="w-full h-full rounded-md px-6 py-2 flex items-center relative gap-3"
 	class:selected={$filters.length == 4}
@@ -66,11 +57,6 @@
 {/each}
 
 <style lang="postcss">
-	.btn {
-		border-color: var(--color);
-		background-color: var(--color);
-	}
-
 	.glow {
 		box-shadow: 0px 0px 20px 2px var(--color);
 	}

@@ -36,10 +36,10 @@ export const POST = (async ({ request, getClientAddress, params }) => {
 	}
 
 	const db = await getFirestore();
-
 	const project = (await db.collection('projects').doc(projectId).get()).data() as Project;
 
 	if (!project) throw error(400, { message: 'Invalid project Id' });
+
 	if (!project.allowedDomains.includes('*') && !project.allowedDomains.includes(clientIp))
 		throw error(400, {
 			message: `Requests from ${clientIp} are not allowed. Add ${clientIp} to whitelist of this project`
