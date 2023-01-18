@@ -6,7 +6,7 @@
 	import { collection, getFirestore, onSnapshot, orderBy, query } from 'firebase/firestore';
 	import { onDestroy } from 'svelte';
 	import { flip } from 'svelte/animate';
-	import formatDistanceStrict from 'date-fns/formatDistanceStrict';
+	import formatDistanceStrict from 'date-fns/formatDistanceStrict/index.js';
 
 	const db = getFirestore();
 	let events: Event[] = [];
