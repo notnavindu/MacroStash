@@ -41,7 +41,7 @@
 		</thead>
 		<tbody class="divide-y-[1px] divide-color-gray-light divide-opacity-40">
 			{#each events.filter((elm) => $filters.includes(elm.level)) as event, i (event.id)}
-				<tr in:fly={{ y: 20, delay: i * 10 }} class="  ">
+				<tr in:fly={{ y: 20, delay: i * 30 }} class="  ">
 					<!-- TODO: Optimize constants -->
 					<td
 						class="pl-5 pr-2 py-4 text-center whitespace-nowrap text-xl relative"
@@ -55,8 +55,8 @@
 						<Icon icon={filterIcons[event.level]} />
 					</td>
 					<td class="px-6 py-4 whitespace-nowrap"> {event.message} </td>
-					<td class="px-6 py-4"> FIX ME </td>
-					<td class="px-6 py-4">
+					<td class="px-6 py-4"> FIX </td>
+					<td class="px-6 py-4 whitespace-nowrap">
 						{formatDistanceStrict(event.timestamp.toDate(), new Date())} ago</td
 					>
 				</tr>

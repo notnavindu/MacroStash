@@ -11,7 +11,7 @@
 
 {#if !collapsable || (collapsable && show)}
 	<div
-		class="w-72 bg-color-black fixed left-0 top-0 h-screen overflow-hidden"
+		class="w-72 bg-color-black fixed left-0 top-0 h-screen overflow-hidden z-50"
 		transition:fly={{ x: -300 }}
 	>
 		<div class="w-full text-2xl p-4 mt-4 flex justify-between">
@@ -32,9 +32,9 @@
 			/>
 
 			<SidebarTab
-				name="Event Grid"
-				href="/grid"
-				selected={$page.url.pathname.startsWith('/grid')}
+				name="Analytics"
+				href="/analytics"
+				selected={$page.url.pathname.startsWith('/analytics')}
 			/>
 
 			<SidebarTab
@@ -57,9 +57,18 @@
 		<div class="px-4">
 			<div class="opacity-50">Filter by status</div>
 
-			<div class="flex flex-wrap  gap-3 mt-2">
+			<div
+				class="flex flex-wrap  gap-3 mt-2 transition-all duration-1000"
+				class:disabled={!$page.url.pathname.startsWith('/events')}
+			>
 				<SidebarFilters />
 			</div>
 		</div>
 	</div>
 {/if}
+
+<style>
+	.disabled {
+		@apply grayscale pointer-events-none opacity-75;
+	}
+</style>
