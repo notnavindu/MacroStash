@@ -8,7 +8,7 @@
 	import { flip } from 'svelte/animate';
 	import formatDistanceStrict from 'date-fns/formatDistanceStrict/index.js';
 	import { fly } from 'svelte/transition';
-	import { events } from '$stores/data.store';
+	import { events, projects } from '$stores/data.store';
 </script>
 
 <div class="text-3xl">Events</div>
@@ -19,8 +19,8 @@
 			<tr>
 				<th scope="col" class="w-12 px-3 py-3"> Status </th>
 				<th scope="col" class="px-6 py-3"> Message </th>
-				<th scope="col" class="px-6 py-3"> Project </th>
-				<th scope="col" class="px-6 py-3"> Timestamp </th>
+				<th scope="col" class="px-4 py-3"> Project </th>
+				<th scope="col" class="px-2 py-3"> Timestamp </th>
 			</tr>
 		</thead>
 		<tbody class="divide-y-[1px] divide-color-gray-light divide-opacity-40">
@@ -34,13 +34,15 @@
 						<div
 							class="w-1 h-full absolute left-0 top-0"
 							style="background: {filterColors[event.level]}; 
-									box-shadow: 0px 0px 50px 2px {filterColors[event.level]}"
+									box-shadow: 0px 0px 60px 4px {filterColors[event.level]}"
 						/>
 						<Icon icon={filterIcons[event.level]} />
 					</td>
 					<td class="px-6 py-4 whitespace-nowrap"> {event.message} </td>
-					<td class="px-6 py-4"> FIX </td>
-					<td class="px-6 py-4 whitespace-nowrap">
+					<td class="px-4 py-4 whitespace-nowrap">
+						{$projects.find((p) => p.id == event.projectId)?.name || 'Invalid Project ID'}
+					</td>
+					<td class="px-2 py-4 whitespace-nowrap">
 						{formatDistanceStrict(event.timestamp.toDate(), new Date())} ago</td
 					>
 				</tr>
