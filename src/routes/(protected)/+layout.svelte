@@ -6,6 +6,7 @@
 	import { fly } from 'svelte/transition';
 	import Icon from '@iconify/svelte';
 	import { page } from '$app/stores';
+	import DataListeners from '$lib/components/DataListeners.svelte';
 
 	let loggedIn = false;
 	let innerWidth = 0;
@@ -23,6 +24,7 @@
 <svelte:window bind:innerWidth />
 
 {#if loggedIn}
+	<DataListeners />
 	<main class="w-full min-h-screen bg-color-black-blueish text-white">
 		<Sidebar {collapsable} bind:show />
 

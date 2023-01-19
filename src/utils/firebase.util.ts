@@ -13,6 +13,7 @@ import {
 } from '$env/static/public';
 import { goto } from '$app/navigation';
 import { handleLogin } from './api/user.util';
+import { page } from '$app/stores';
 
 export const initilizeFirebase = async () => {
 	if ((await get(firebaseStore)) !== null) return;
@@ -34,6 +35,10 @@ export const initilizeFirebase = async () => {
 	auth.onAuthStateChanged(async (user) => {
 		if (user) {
 			await handleLogin(await user.getIdToken());
+
+			if (window.location.pathname === '/') {
+				goto('/events');
+			}
 		}
 
 		firebaseAuthStore.set({

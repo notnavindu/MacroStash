@@ -8,23 +8,7 @@
 	import { flip } from 'svelte/animate';
 	import formatDistanceStrict from 'date-fns/formatDistanceStrict/index.js';
 	import { fly } from 'svelte/transition';
-
-	const db = getFirestore();
-	let events: Event[] = [];
-
-	const unsubscribe = onSnapshot(
-		query(collection(db, 'events'), orderBy('timestamp', 'desc')),
-		(snap) => {
-			events = snap.docs.map((doc) => {
-				return {
-					id: doc.id,
-					...doc.data()
-				} as Event;
-			});
-		}
-	);
-
-	onDestroy(unsubscribe);
+	import { events } from '$stores/data.store';
 </script>
 
 <div class="text-3xl">Events</div>
@@ -40,7 +24,7 @@
 			</tr>
 		</thead>
 		<tbody class="divide-y-[1px] divide-color-gray-light divide-opacity-40">
-			{#each events.filter((elm) => $filters.includes(elm.level)) as event, i (event.id)}
+			{#each $events.filter((elm) => $filters.includes(elm.level)) as event, i (event.id)}
 				<tr in:fly={{ y: 20, delay: i * 30 }} class="  ">
 					<!-- TODO: Optimize constants -->
 					<td

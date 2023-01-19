@@ -43,11 +43,7 @@
 				selected={$page.url.pathname.startsWith('/projects')}
 			/>
 
-			<SidebarTab
-				name="Counters"
-				href="/counter"
-				selected={$page.url.pathname.startsWith('/counter')}
-			/>
+			<SidebarTab name="Users" href="/users" selected={$page.url.pathname.startsWith('/users')} />
 		</div>
 
 		<div class="px-4">

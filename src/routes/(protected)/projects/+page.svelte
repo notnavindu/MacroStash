@@ -2,24 +2,17 @@
 	import CreateProjectModal from '$lib/components/Modals/CreateProjectModal.svelte';
 	import type { Project } from '$lib/schemas/project.schema';
 	import { getAllProjects } from '$utils/api/project.util';
-	import { getDocs, getFirestore } from 'firebase/firestore';
-	import { collection } from 'firebase/firestore';
-	import { onMount } from 'svelte';
 
 	import { toSvg } from 'jdenticon';
 	import { fly } from 'svelte/transition';
 	import EditProjectModal from '$lib/components/Modals/EditProjectModal.svelte';
+	import { projects } from '$stores/data.store';
 
-	let projects: Project[] = [];
 	let selected: Project | null;
 	let createModalOpen = false;
 
-	onMount(async () => {
-		projects = await getAllProjects();
-	});
-
 	const refresh = async () => {
-		projects = await getAllProjects();
+		$projects = await getAllProjects();
 		createModalOpen = false;
 		selected = null;
 	};
@@ -36,7 +29,7 @@
 </div>
 
 <div class="flex flex-wrap gap-4 mt-9 w-full justify-center lg:justify-star">
-	{#each projects as project, i (project.id)}
+	{#each $projects as project, i (project.id)}
 		<button
 			on:click={() => (selected = project)}
 			in:fly={{ y: 50, delay: i * 50 }}
