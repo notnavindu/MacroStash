@@ -8,6 +8,7 @@ specifiers:
   '@typescript-eslint/parser': ^5.48.1
   autoprefixer: ^10.4.13
   axios: ^1.2.2
+  chart.js: ^4.2.0
   date-fns: ^2.29.3
   eslint: ^8.31.0
   eslint-config-prettier: ^8.6.0
@@ -19,6 +20,7 @@ specifiers:
   prettier: ^2.8.2
   prettier-plugin-svelte: ^2.9.0
   svelte: ^3.55.1
+  svelte-chartjs: ^3.1.2
   svelte-check: ^3.0.2
   svelte-loading-spinners: ^0.3.4
   svelte-preprocess: ^5.0.0
@@ -31,10 +33,12 @@ specifiers:
 
 dependencies:
   axios: 1.2.2
+  chart.js: 4.2.0
   date-fns: 2.29.3
   firebase: 9.15.0
   firebase-admin: 11.4.1
   jdenticon: 3.2.0
+  svelte-chartjs: 3.1.2_sb7g7nvzgbbexijgaje6yhompe
   tailwind-scrollbar-hide: 1.1.7
   zod: 3.20.2
 
@@ -962,6 +966,10 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.14
     dev: true
 
+  /@kurkle/color/0.3.2:
+    resolution: {integrity: sha512-fuscdXJ9G1qb7W8VdHi+IwRqij3lBkosAm4ydQtEmbY58OzHXqQhvlxqEkoz0yssNVn38bcpRWgA9PP+OGoisw==}
+    dev: false
+
   /@nodelib/fs.scandir/2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
     engines: {node: '>= 8'}
@@ -1562,6 +1570,13 @@ packages:
     dependencies:
       ansi-styles: 4.3.0
       supports-color: 7.2.0
+
+  /chart.js/4.2.0:
+    resolution: {integrity: sha512-wbtcV+QKeH0F7gQZaCJEIpsNriFheacouJQTVIjITi3eQA8bTlIBoknz0+dgV79aeKLNMAX+nDslIVE/nJ3rzA==}
+    engines: {pnpm: ^7.0.0}
+    dependencies:
+      '@kurkle/color': 0.3.2
+    dev: false
 
   /chokidar/3.5.3:
     resolution: {integrity: sha512-Dr3sfKRP6oTcjf2JmUmFJfeVMvXBdegxB0iVQ5eb2V10uFJUCAS8OByZdVAyVb8xXNz3GjjTgj9kLWsZTqE6kw==}
@@ -3356,6 +3371,16 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
     dev: true
+
+  /svelte-chartjs/3.1.2_sb7g7nvzgbbexijgaje6yhompe:
+    resolution: {integrity: sha512-3+6gY2IJ9Ua8R9pk3iS1ypa7Z9OoXCJb9oPwIfTp7caJM+X+RrWnH2CTkGAq7FeSxc2nnmW08tYN88Q8Y+5M+w==}
+    peerDependencies:
+      chart.js: ^3.5.0 || ^4.0.0
+      svelte: ^3.45.0
+    dependencies:
+      chart.js: 4.2.0
+      svelte: 3.55.1
+    dev: false
 
   /svelte-check/3.0.2_pehl75e5jsy22vp33udjja4soi:
     resolution: {integrity: sha512-DkhKhV0Jt0gh7q9DBB26+J2Vfb9y4/4JWxnbkXBZha7542LOhwvj3edJFjyJ+xjdaXyInZ+YRRYc3V6wytP2ew==}

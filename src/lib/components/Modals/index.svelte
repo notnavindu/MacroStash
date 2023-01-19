@@ -23,7 +23,7 @@
 	on:keydown
 	on:click={close}
 	bind:this={overlay}
-	transition:fade={{ duration: 200, easing: expoOut }}
+	transition:fade={{ duration: 500, easing: expoOut }}
 >
 	<div
 		class="w-full max-w-xl bg-zinc-900 border border-zinc-700 overscroll-contain relative {rounded} {$$props.class}"

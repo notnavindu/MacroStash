@@ -4,11 +4,13 @@
 
 	export let loading = false;
 	export let primary = false;
+	export let disabled = false;
 </script>
 
 <button
 	class="w-full bg-color-gray-light text-white h-8 rounded-md flex items-center justify-center select-none overflow-hidden"
 	class:bg-color-blue={primary}
+	class:disabled
 	on:click
 >
 	{#if loading}
@@ -21,3 +23,9 @@
 		</div>
 	{/if}
 </button>
+
+<style lang="postcss">
+	.disabled {
+		@apply opacity-50 pointer-events-none;
+	}
+</style>

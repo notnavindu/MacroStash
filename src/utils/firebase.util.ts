@@ -34,10 +34,14 @@ export const initilizeFirebase = async () => {
 
 	auth.onAuthStateChanged(async (user) => {
 		if (user) {
-			await handleLogin(await user.getIdToken());
+			try {
+				await handleLogin(await user.getIdToken());
 
-			if (window.location.pathname === '/') {
-				goto('/events');
+				if (window.location.pathname === '/') {
+					goto('/events');
+				}
+			} catch (error) {
+				goto('/request');
 			}
 		}
 

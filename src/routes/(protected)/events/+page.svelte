@@ -26,7 +26,6 @@
 		<tbody class="divide-y-[1px] divide-color-gray-light divide-opacity-40">
 			{#each $events.filter((elm) => $filters.includes(elm.level)) as event, i (event.id)}
 				<tr in:fly={{ y: 20, delay: i * 30 }} class="  ">
-					<!-- TODO: Optimize constants -->
 					<td
 						class="pl-5 pr-2 py-4 text-center whitespace-nowrap text-xl relative"
 						style="color: {filterColors[event.level]};"
