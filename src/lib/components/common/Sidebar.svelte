@@ -4,6 +4,7 @@
 	import SidebarTab from './SidebarTab.svelte';
 	import Icon from '@iconify/svelte';
 	import SidebarFilters from './SidebarFilters.svelte';
+	import ProjectFilters from './ProjectFilters.svelte';
 
 	export let collapsable = false;
 	export let show = false;
@@ -11,7 +12,7 @@
 
 {#if !collapsable || (collapsable && show)}
 	<div
-		class="w-72 bg-color-black fixed left-0 top-0 h-screen overflow-hidden z-50"
+		class="w-72 bg-color-black fixed left-0 top-0 h-screen overflow-x-hidden overflow-y-auto z-50"
 		transition:fly={{ x: -300 }}
 	>
 		<div class="w-full text-2xl p-4 mt-4 flex justify-between">
@@ -60,10 +61,21 @@
 				<SidebarFilters />
 			</div>
 		</div>
+
+		<div class="px-4 mt-8 mb-6">
+			<div class="opacity-50">Filter by project</div>
+
+			<div
+				class="flex flex-wrap  gap-3 mt-2 transition-all duration-1000"
+				class:disabled={!$page.url.pathname.startsWith('/events')}
+			>
+				<ProjectFilters />
+			</div>
+		</div>
 	</div>
 {/if}
 
-<style>
+<style lang="postcss">
 	.disabled {
 		@apply grayscale pointer-events-none opacity-75;
 	}

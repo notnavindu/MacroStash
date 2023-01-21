@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { filterColors, filterIcons } from '$lib/constants/filters.constants';
 	import type { Event } from '$lib/schemas/event.schema';
-	import { filters } from '$stores/filters.store';
+	import { filters, projectFilters } from '$stores/filters.store';
 	import Icon from '@iconify/svelte';
 	import { collection, getFirestore, onSnapshot, orderBy, query } from 'firebase/firestore';
 	import { onDestroy } from 'svelte';
@@ -24,7 +24,9 @@
 			</tr>
 		</thead>
 		<tbody class="divide-y-[1px] divide-color-gray-light divide-opacity-40">
-			{#each $events.filter((elm) => $filters.includes(elm.level)) as event, i (event.id)}
+			{#each $events
+				.filter((elm) => $projectFilters.includes(elm.projectId))
+				.filter((elm) => $filters.includes(elm.level)) as event, i (event.id)}
 				<tr in:fly={{ y: 20, delay: i * 30 }} class="  ">
 					<td
 						class="pl-5 pr-2 py-4 text-center whitespace-nowrap text-xl relative"

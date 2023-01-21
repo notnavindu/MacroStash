@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Event } from '$lib/schemas/event.schema';
 	import { events, projects } from '$stores/data.store';
+	import { projectFilters } from '$stores/filters.store';
 	import { getAllProjects } from '$utils/api/project.util';
 	import { getFirestore } from 'firebase/firestore';
 	import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
@@ -8,6 +9,7 @@
 
 	getAllProjects().then((val) => {
 		$projects = val;
+		$projectFilters = val.map((proj) => proj.id);
 	});
 
 	const db = getFirestore();
