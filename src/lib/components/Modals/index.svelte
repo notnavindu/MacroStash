@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import { fade } from 'svelte/transition';
+	import { fade, fly } from 'svelte/transition';
 	import { expoOut } from 'svelte/easing';
 	import Icon from '@iconify/svelte';
 
@@ -19,13 +19,13 @@
 
 <!-- Desktop -->
 <div
-	class="flex flex-col items-center justify-center flex-grow fixed top-0 left-0 w-full h-full p-10 backdrop-blur-lg bg-black bg-opacity-50 z-[10000]"
+	class="flex flex-col items-center justify-center flex-grow fixed top-0 left-0 w-full h-full p-5 backdrop-blur-lg bg-black bg-opacity-50 z-[10000]"
 	on:keydown
 	on:click={close}
 	bind:this={overlay}
-	transition:fade={{ duration: 500, easing: expoOut }}
 >
 	<div
+		transition:fly={{ y: 50, duration: 200, easing: expoOut }}
 		class="w-full max-w-xl bg-zinc-900 border border-zinc-700 overscroll-contain relative {rounded} {$$props.class}"
 	>
 		<button

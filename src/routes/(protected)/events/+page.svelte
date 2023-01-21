@@ -27,7 +27,10 @@
 			{#each $events
 				.filter((elm) => $projectFilters.includes(elm.projectId))
 				.filter((elm) => $filters.includes(elm.level)) as event, i (event.id)}
-				<tr in:fly={{ y: 20, delay: i * 30 }} class="  ">
+				<tr
+					in:fly={{ y: 20, delay: i * 30 }}
+					class="opacity-80 hover:opacity-100 hover:bg-white hover:bg-opacity-5 cursor-pointer"
+				>
 					<td
 						class="pl-5 pr-2 py-4 text-center whitespace-nowrap text-xl relative"
 						style="color: {filterColors[event.level]};"
@@ -44,8 +47,8 @@
 						{$projects.find((p) => p.id == event.projectId)?.name || 'Invalid Project ID'}
 					</td>
 					<td class="px-2 py-4 whitespace-nowrap">
-						{formatDistanceStrict(event.timestamp.toDate(), new Date())} ago</td
-					>
+						{formatDistanceStrict(event.timestamp.toDate(), new Date())} ago
+					</td>
 				</tr>
 			{/each}
 		</tbody>

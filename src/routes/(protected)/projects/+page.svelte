@@ -34,7 +34,7 @@
 			on:click={() => (selected = project)}
 			in:fly={{ y: 50, delay: i * 50 }}
 			class="w-full aspect-square max-w-[250px] bg-color-gray-light bg-opacity-20 
-					flex items-center justify-center flex-col gap-4 rounded-lg"
+					flex items-center justify-center flex-col gap-4 rounded-lg hover:bg-opacity-30"
 		>
 			<div>
 				{@html toSvg(project.name, 140)}
