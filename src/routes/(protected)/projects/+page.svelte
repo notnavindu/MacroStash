@@ -18,6 +18,10 @@
 	};
 </script>
 
+<svelte:head>
+	<title>Projects | MacroStash</title>
+</svelte:head>
+
 <div class="w-full flex justify-between items-center">
 	<div class="text-3xl">Projects</div>
 	<button

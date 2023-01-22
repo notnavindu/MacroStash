@@ -42,6 +42,10 @@
 	};
 </script>
 
+<svelte:head>
+	<title>Users | MacroStash</title>
+</svelte:head>
+
 {#if addUserOpen}
 	<AddUserModal />
 {/if}

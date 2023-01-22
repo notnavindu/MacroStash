@@ -11,6 +11,10 @@
 	import { events, projects } from '$stores/data.store';
 </script>
 
+<svelte:head>
+	<title>Event Log | MacroStash</title>
+</svelte:head>
+
 <div class="text-3xl">Events</div>
 
 <div class="h-full relative overflow-x-auto mt-6">
@@ -29,7 +33,7 @@
 				.filter((elm) => $filters.includes(elm.level)) as event, i (event.id)}
 				<tr
 					in:fly={{ y: 20, delay: i * 30 }}
-					class="opacity-80 hover:opacity-100 hover:bg-white hover:bg-opacity-5 cursor-pointer"
+					class=" hover:bg-white hover:bg-opacity-5 cursor-pointer"
 				>
 					<td
 						class="pl-5 pr-2 py-4 text-center whitespace-nowrap text-xl relative"
