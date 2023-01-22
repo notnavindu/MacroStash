@@ -1,14 +1,14 @@
 <script lang="ts">
-	import { filterColors, filterIcons } from '$lib/constants/filters.constants';
+	import { filterConfig } from '$lib/constants/filters.constants';
 	import type { Event } from '$lib/schemas/event.schema';
 	import { filters, projectFilters } from '$stores/filters.store';
 	import Icon from '@iconify/svelte';
-	import { collection, getFirestore, onSnapshot, orderBy, query } from 'firebase/firestore';
-	import { onDestroy } from 'svelte';
-	import { flip } from 'svelte/animate';
 	import formatDistanceStrict from 'date-fns/formatDistanceStrict/index.js';
 	import { fly } from 'svelte/transition';
 	import { events, projects } from '$stores/data.store';
+	import EventDetailsModal from '$lib/components/Modals/EventDetailsModal.svelte';
+
+	let selected: Event | null;
 </script>
 
 <svelte:head>
@@ -16,6 +16,10 @@
 </svelte:head>
 
 <div class="text-3xl">Events</div>
+
+{#if selected}
+	<EventDetailsModal event={selected} on:ModalClose={() => (selected = null)} />
+{/if}
 
 <div class="h-full relative overflow-x-auto mt-6">
 	<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -33,18 +37,19 @@
 				.filter((elm) => $filters.includes(elm.level)) as event, i (event.id)}
 				<tr
 					in:fly={{ y: 20, delay: i * 30 }}
-					class=" hover:bg-white hover:bg-opacity-5 cursor-pointer"
+					class=" hover:bg-white hover:bg-opacity-5 cursor-pointer transition-all duration-200"
+					on:click={() => (selected = event)}
 				>
 					<td
 						class="pl-5 pr-2 py-4 text-center whitespace-nowrap text-xl relative"
-						style="color: {filterColors[event.level]};"
+						style="color: {filterConfig[event.level].color};"
 					>
 						<div
 							class="w-1 h-full absolute left-0 top-0"
-							style="background: {filterColors[event.level]}; 
-									box-shadow: 0px 0px 60px 4px {filterColors[event.level]}"
+							style="background: {filterConfig[event.level].color}; 
+									box-shadow: 0px 0px 60px 4px {filterConfig[event.level].color}"
 						/>
-						<Icon icon={filterIcons[event.level]} />
+						<Icon icon={filterConfig[event.level].icon} />
 					</td>
 					<td class="px-6 py-4 whitespace-nowrap"> {event.message} </td>
 					<td class="px-4 py-4 whitespace-nowrap">
