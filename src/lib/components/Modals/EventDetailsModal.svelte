@@ -22,6 +22,11 @@
 	</div>
 
 	<div class="flex flex-col mt-4">
+		<div class="text-xs" style="color: {filterConfig[event.level].color};">Timestamp</div>
+		<div class="mt-1 bg-white bg-opacity-5 p-2 rounded-md">{event.timestamp.toDate()}</div>
+	</div>
+
+	<div class="flex flex-col mt-4">
 		<div class="text-xs" style="color: {filterConfig[event.level].color};">Message</div>
 		<div class="mt-1 bg-white bg-opacity-5 p-2 rounded-md">{event.message}</div>
 	</div>

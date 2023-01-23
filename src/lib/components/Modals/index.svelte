@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import { fade, fly } from 'svelte/transition';
+	import { fade, fly, scale } from 'svelte/transition';
 	import { expoOut } from 'svelte/easing';
 	import Icon from '@iconify/svelte';
 
@@ -25,7 +25,7 @@
 	bind:this={overlay}
 >
 	<div
-		transition:fly={{ y: 50, duration: 200, easing: expoOut }}
+		transition:scale={{ start: 0.95, duration: 200, easing: expoOut }}
 		class="w-full max-w-xl bg-zinc-900 border border-zinc-700 overscroll-contain relative {rounded} {$$props.class}"
 	>
 		<button
