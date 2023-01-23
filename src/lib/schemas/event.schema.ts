@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-const LOG_LEVELS = ['debug', 'info', 'warn', 'error'] as const;
+export const LOG_LEVELS = ['debug', 'info', 'warn', 'error'] as const;
 
 export const eventSchema = z
 	.object({

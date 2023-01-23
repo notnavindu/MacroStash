@@ -1,4 +1,7 @@
-export const filterConfig = {
+import type { FilterList } from 'src/app';
+import type { Event } from '$lib/schemas/event.schema';
+
+export const filterConfig: { [ket in Event['level']]: FilterList } = {
 	debug: {
 		title: 'Debug',
 		value: 'debug',

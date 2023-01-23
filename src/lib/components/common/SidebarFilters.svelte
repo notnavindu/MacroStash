@@ -1,9 +1,8 @@
 <script lang="ts">
-	import { filtersList } from '$lib/constants/filters.constants';
-	import type { Event } from '$lib/schemas/event.schema';
+	import { filterConfig } from '$lib/constants/filters.constants';
+	import { LOG_LEVELS } from '$lib/schemas/event.schema';
 	import { filters } from '$stores/filters.store';
 	import Icon from '@iconify/svelte';
-	import type { FilterList } from 'src/app';
 	import { fly } from 'svelte/transition';
 
 	const setAll = () => {
@@ -36,23 +35,23 @@
 	<div>All</div>
 </button>
 
-{#each filtersList as filter, i}
+{#each LOG_LEVELS as filter, i}
 	<button
 		class="w-full h-full rounded-md px-6 py-2 flex items-center relative gap-3 transition-colors duration-200"
-		class:selected={$filters.includes(filter.value)}
-		style="--color: {filter.color + '1a'}"
-		on:click={() => selectFilter(filter.value)}
+		class:selected={$filters.includes(filter)}
+		style="--color: {filterConfig[filter].color + '1a'}"
+		on:click={() => selectFilter(filter)}
 	>
-		{#if $filters.includes(filter.value)}
+		{#if $filters.includes(filter)}
 			<div
 				class="w-2 h-full rounded-l-md absolute left-0 top-0 glow selected"
-				style="--color: {filter.color}"
+				style="--color: {filterConfig[filter].color}"
 				transition:fly={{ x: -10, delay: i * 60 }}
 			/>
 		{/if}
 
-		<Icon icon={filter.icon} class="text-xl" />
-		<div>{filter.title}</div>
+		<Icon icon={filterConfig[filter].icon} class="text-xl" />
+		<div>{filterConfig[filter].title}</div>
 	</button>
 {/each}
 
