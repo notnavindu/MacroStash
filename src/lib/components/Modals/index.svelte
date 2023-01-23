@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import { fade, fly, scale } from 'svelte/transition';
+	import { scale } from 'svelte/transition';
 	import { expoOut } from 'svelte/easing';
 	import Icon from '@iconify/svelte';
 

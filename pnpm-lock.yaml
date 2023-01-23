@@ -22,6 +22,7 @@ specifiers:
   svelte: ^3.55.1
   svelte-chartjs: ^3.1.2
   svelte-check: ^3.0.2
+  svelte-heatmap: ^1.0.2
   svelte-loading-spinners: ^0.3.4
   svelte-preprocess: ^5.0.0
   tailwind-scrollbar-hide: ^1.1.7
@@ -39,6 +40,7 @@ dependencies:
   firebase-admin: 11.4.1
   jdenticon: 3.2.0
   svelte-chartjs: 3.1.2_sb7g7nvzgbbexijgaje6yhompe
+  svelte-heatmap: 1.0.2
   tailwind-scrollbar-hide: 1.1.7
   zod: 3.20.2
 
@@ -3408,6 +3410,10 @@ packages:
       - stylus
       - sugarss
     dev: true
+
+  /svelte-heatmap/1.0.2:
+    resolution: {integrity: sha512-qVsJj/Y/FQCjYJ2A7QU/v87FjGFjWqrTIb+qPumrudzH5w6D5WoubHF7Q2g38naJry4ADO1I0K29UuC86t5lJw==}
+    dev: false
 
   /svelte-hmr/0.15.1_svelte@3.55.1:
     resolution: {integrity: sha512-BiKB4RZ8YSwRKCNVdNxK/GfY+r4Kjgp9jCLEy0DuqAKfmQtpL38cQK3afdpjw4sqSs4PLi3jIPJIFp259NkZtA==}
