@@ -3,6 +3,7 @@
 	import type { User } from '$lib/schemas/user.schema';
 	import { approveUser, getAllUsers, getPendingUsers, rejectUser } from '$utils/api/user.util';
 	import Icon from '@iconify/svelte';
+	import { getAuth, signOut } from 'firebase/auth';
 	import { toSvg } from 'jdenticon';
 	import { onMount } from 'svelte';
 
@@ -51,7 +52,15 @@
 {/if}
 
 <div class:disabled={loading}>
-	<div class="text-3xl">Users</div>
+	<div class="w-full flex justify-between">
+		<div class="text-3xl">Users</div>
+
+		<button on:click={() => signOut(getAuth())} class="flex gap-2 items-center">
+			Sign Out
+			<Icon class="text-xl" icon="mdi:sign-out-variant" />
+		</button>
+	</div>
+
 	<div class="flex flex-wrap gap-4 mt-5 w-full justify-star">
 		{#each users as user (user.id)}
 			<div

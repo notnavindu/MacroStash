@@ -57,7 +57,7 @@
 	</div>
 
 	<div class="mt-16 mb-2 text-2xl flex justify-between items-center ">
-		All
+		<span>All</span>
 		<div class="flex gap-1 text-xs">
 			Less
 			{#each allColors as color}
@@ -86,7 +86,7 @@
 	<!-- Debug -->
 
 	<div class="mt-16 mb-2 text-2xl flex justify-between items-center">
-		Debug
+		<span style="color: {debugColors[2]}">Debug</span>
 		<div class="flex gap-1 text-xs">
 			Less
 			{#each debugColors as color}
@@ -115,7 +115,7 @@
 	<!-- Info -->
 
 	<div class="mt-16 mb-2 text-2xl flex justify-between items-center ">
-		Info
+		<span style="color: {infoColors[2]}">info</span>
 		<div class="flex gap-1 text-xs">
 			Less
 			{#each infoColors as color}
@@ -144,7 +144,8 @@
 	<!-- Warning -->
 
 	<div class="mt-16 mb-2 text-2xl flex justify-between items-center ">
-		Warnings
+		<span style="color: {warningColors[2]}">Warnings</span>
+
 		<div class="flex gap-1 text-xs">
 			Less
 			{#each warningColors as color}
@@ -173,7 +174,8 @@
 	<!-- Errors -->
 
 	<div class="mt-16 mb-2 text-2xl flex justify-between items-center ">
-		Errors
+		<span style="color: {errorColors[2]}">Errors</span>
+
 		<div class="flex gap-1 text-xs">
 			Less
 			{#each errorColors as color}
