@@ -44,8 +44,13 @@
 
 	<div class="mt-4">
 		<div class="text-sm mb-2 opacity-75">Logging URL</div>
-		<div class="w-full py-2 px-3 bg-color-gray-light bg-opacity-30 rounded-md opacity-75">
-			<code>https://lskjf.com/api/events/kjdhsd</code>
+		<div
+			class="w-full py-2 px-3 bg-color-gray-light bg-opacity-30 rounded-md opacity-75 break-all text-xs md:text-sm flex items-center gap-3 justify-between"
+		>
+			<div>https://{window.location.host}/api/events/{selected.id}</div>
+			<div class="text-lg">
+				<Icon icon={'material-symbols:content-copy-outline'} />
+			</div>
 		</div>
 	</div>
 
@@ -65,17 +70,23 @@
 		</div>
 
 		<div
-			class="w-full py-2 px-3 bg-color-gray-light bg-opacity-30 rounded-md opacity-75 flex flex-col"
+			class="w-full py-2 px-3 bg-color-gray-light bg-opacity-30 rounded-md opacity-75 flex gap-3 justify-between items-center"
 		>
-			<div>&#123;</div>
-			<div class="ml-5">"message": "Add message here",</div>
-			<div class="ml-5">
-				"level":
-				<span class="font-bold" style="color: {filterConfig[selectedLogLevel].color}">
-					"{selectedLogLevel}"
-				</span>
+			<div class="flex flex-col text-xs md:text-sm">
+				<div>&#123;</div>
+				<div class="ml-5">"message": "Add message here",</div>
+				<div class="ml-5">
+					"level":
+					<span class="font-bold" style="color: {filterConfig[selectedLogLevel].color}">
+						"{selectedLogLevel}"
+					</span>
+				</div>
+				<div>&#125;</div>
 			</div>
-			<div>&#125;</div>
+
+			<div class="text-lg">
+				<Icon icon={'material-symbols:content-copy-outline'} />
+			</div>
 		</div>
 	</div>
 

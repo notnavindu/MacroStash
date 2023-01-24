@@ -32,7 +32,7 @@
 	</button>
 </div>
 
-<div class="flex flex-wrap gap-4 mt-9 w-full justify-center lg:justify-star">
+<div class="flex flex-wrap gap-4 mt-9 w-full justify-center lg:justify-start">
 	{#each $projects as project, i (project.id)}
 		<button
 			on:click={() => (selected = project)}
@@ -48,6 +48,20 @@
 		</button>
 	{/each}
 </div>
+
+<!-- Notifications -->
+<!-- <div class="w-full flex justify-between items-center mt-12">
+	<div class="text-3xl">Notifications</div>
+	<div>On/Off</div>
+</div>
+
+<div class="flex flex-col gap-4 mt-9 w-full ">
+	{#each $projects as project, i (project.id)}
+		<div class="h-96 border-b">
+			<div class="text-xl">{project.name}</div>
+		</div>
+	{/each}
+</div> -->
 
 {#if createModalOpen}
 	<CreateProjectModal on:ProjectCreate={refresh} on:ModalClose={() => (createModalOpen = false)} />
