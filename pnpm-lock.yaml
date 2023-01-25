@@ -21,6 +21,7 @@ specifiers:
   svelte: ^3.55.1
   svelte-chartjs: ^3.1.2
   svelte-check: ^3.0.2
+  svelte-french-toast: ^1.0.3
   svelte-heatmap: ^1.0.2
   svelte-loading-spinners: ^0.3.4
   svelte-preprocess: ^5.0.0
@@ -38,6 +39,7 @@ dependencies:
   firebase-admin: 11.4.1
   jdenticon: 3.2.0
   svelte-chartjs: 3.1.2_svelte@3.55.1
+  svelte-french-toast: 1.0.3_svelte@3.55.1
   svelte-heatmap: 1.0.2
   tailwind-scrollbar-hide: 1.1.7
   zod: 3.20.2
@@ -3397,6 +3399,14 @@ packages:
       - sugarss
     dev: true
 
+  /svelte-french-toast/1.0.3_svelte@3.55.1:
+    resolution: {integrity: sha512-HBdutlqUx5FroucvcmMJstmTJDedXayiOSXubBYW6iL5x1PdHp+bOflGx5NxsOa6+EQckJnnVv1vJYgGsg7ngQ==}
+    dependencies:
+      svelte-writable-derived: 2.1.6_svelte@3.55.1
+    transitivePeerDependencies:
+      - svelte
+    dev: false
+
   /svelte-heatmap/1.0.2:
     resolution: {integrity: sha512-qVsJj/Y/FQCjYJ2A7QU/v87FjGFjWqrTIb+qPumrudzH5w6D5WoubHF7Q2g38naJry4ADO1I0K29UuC86t5lJw==}
     dev: false
@@ -3462,6 +3472,14 @@ packages:
       svelte: 3.55.1
       typescript: 4.9.4
     dev: true
+
+  /svelte-writable-derived/2.1.6_svelte@3.55.1:
+    resolution: {integrity: sha512-vqOXuiESMZyP/kt/RD+nOk2RVHNakDm1K1hmfeGAKc4jzcSp5hEkUi43MDbkVlMurkSBlcMVTQwRQy4LcBT2lw==}
+    peerDependencies:
+      svelte: ^3.2.1
+    dependencies:
+      svelte: 3.55.1
+    dev: false
 
   /svelte/3.55.1:
     resolution: {integrity: sha512-S+87/P0Ve67HxKkEV23iCdAh/SX1xiSfjF1HOglno/YTbSTW7RniICMCofWGdJJbdjw3S+0PfFb1JtGfTXE0oQ==}

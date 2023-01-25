@@ -1,10 +1,29 @@
-import type { Project } from '$lib/schemas/project.schema';
-import { collection, doc, getDocs, getFirestore, setDoc } from 'firebase/firestore';
-import { api } from '.';
+import { projectSchema, type Project } from '$lib/schemas/project.schema';
+import {
+	collection,
+	doc,
+	getDocs,
+	getFirestore,
+	serverTimestamp,
+	setDoc
+} from 'firebase/firestore';
+import toast from 'svelte-french-toast';
+import { z } from 'zod';
 
 export const createProject = async (data: Project) => {
-	return await api.post('/projects', data).then((res) => {
-		return res.data.project;
+	try {
+		projectSchema.parse(data);
+	} catch (err) {
+		if (err instanceof z.ZodError) {
+			return toast.error('Parsing error');
+		}
+	}
+
+	let docRef = doc(collection(getFirestore(), 'projects'));
+	await setDoc(docRef, {
+		...data,
+		id: docRef.id,
+		createdAt: serverTimestamp()
 	});
 };
 

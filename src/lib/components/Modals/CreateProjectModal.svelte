@@ -17,7 +17,7 @@
 
 		loading = true;
 
-		await createProject({ name, allowedDomains: ['*'] });
+		await createProject({ id: '', name, allowedDomains: ['*'] });
 
 		dispatch('ProjectCreate');
 	};
