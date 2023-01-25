@@ -20,11 +20,14 @@ export const createProject = async (data: Project) => {
 	}
 
 	let docRef = doc(collection(getFirestore(), 'projects'));
+
 	await setDoc(docRef, {
 		...data,
 		id: docRef.id,
 		createdAt: serverTimestamp()
 	});
+
+	toast.success('Project Created');
 };
 
 export const getAllProjects = async () => {

@@ -11,7 +11,10 @@
 	if (browser) initilizeFirebase();
 </script>
 
-<Toaster />
+<Toaster
+	toastOptions={{ style: 'background: #333; color: #fff;', duration: 2500 }}
+	position="top-right"
+/>
 
 {#if $page.url.pathname === '/'}
 	<slot />
