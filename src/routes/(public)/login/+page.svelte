@@ -20,7 +20,7 @@
 		const auth = getAuth();
 		signInWithRedirect(auth, provider)
 			.then((result) => {
-				goto('/events');
+				goto('/');
 			})
 			.catch((error) => {
 				console.log(error.message);

@@ -8,7 +8,7 @@
 </script>
 
 <button
-	class="w-full bg-color-gray-light text-white h-8 rounded-md flex items-center justify-center select-none overflow-hidden"
+	class="w-full bg-color-gray-light text-white h-8 rounded-md flex items-center justify-center select-none overflow-hidden {$$props.class}"
 	class:bg-color-blue={primary}
 	class:disabled
 	on:click

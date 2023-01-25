@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {
     getMonthEnd,
     getMonthStart,
@@ -144,7 +145,7 @@ export function getColor({ colors, max, value }) {
             if (intencity < i / colors.length) {
                 return color;
             }
-            
+
             color = colors[i];
         }
 

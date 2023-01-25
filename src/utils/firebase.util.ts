@@ -36,8 +36,8 @@ export const initilizeFirebase = async () => {
 		if (user) {
 			try {
 				await handleLogin(await user.getIdToken());
-				console.log('this thing');
-				if (window.location.pathname === '/') {
+
+				if (window.location.pathname === '/' || window.location.pathname === '/login') {
 					goto('/events');
 				}
 			} catch (error) {
