@@ -6,7 +6,7 @@
  * @return {Date}
  */
 export function getMonthEnd(date) {
-    return new Date(date.getFullYear(), date.getMonth() + 1, 0);
+	return new Date(date.getFullYear(), date.getMonth() + 1, 0);
 }
 
 /**
@@ -17,7 +17,7 @@ export function getMonthEnd(date) {
  * @return {Date}
  */
 export function getMonthStart(date) {
-    return new Date(date.getFullYear(), date.getMonth(), 1);
+	return new Date(date.getFullYear(), date.getMonth(), 1);
 }
 
 /**
@@ -28,7 +28,7 @@ export function getMonthStart(date) {
  * @return {Date}
  */
 export function getWeekEnd(date) {
-    return new Date(date.getFullYear(), date.getMonth(), date.getDate() + (6 - date.getDay()));
+	return new Date(date.getFullYear(), date.getMonth(), date.getDate() + (6 - date.getDay()));
 }
 
 /**
@@ -39,10 +39,10 @@ export function getWeekEnd(date) {
  * @return {number}
  */
 export function getWeekIndex(date) {
-    const firstWeekday = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
-    const offsetDate = date.getDate() + firstWeekday - 1;
+	const firstWeekday = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
+	const offsetDate = date.getDate() + firstWeekday - 1;
 
-    return Math.floor(offsetDate / 7);
+	return Math.floor(offsetDate / 7);
 }
 
 /**
@@ -53,7 +53,7 @@ export function getWeekIndex(date) {
  * @return {Date}
  */
 export function getWeekStart(date) {
-    return new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay());
+	return new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay());
 }
 
 /**
@@ -64,24 +64,26 @@ export function getWeekStart(date) {
  * @return {Date}
  */
 export function normalizeDate(value) {
-    if (value instanceof Date) {
-        return value;
-    }
+	if (value instanceof Date) {
+		return value;
+	}
 
-    if (['number', 'string'].includes(typeof value)) {
-        return new Date(value);
-    }
+	if (['number', 'string'].includes(typeof value)) {
+		return new Date(value);
+	}
 
-    throw new Error('Invalid date value');
+	throw new Error('Invalid date value');
 }
 
 /**
  * Stringify a date.
  *
  * @param {Date} date
- * 
+ *
  * @return {string}
  */
 export function stringifyDate(date) {
-    return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
+	return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(
+		date.getDate()
+	).padStart(2, '0')}`;
 }

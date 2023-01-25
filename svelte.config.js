@@ -6,20 +6,19 @@ const config = {
 	// Consult https://kit.svelte.dev/docs/integrations#preprocessors
 	// for more information about preprocessors
 	preprocess: vitePreprocess({
-		postcss: true,
+		postcss: true
 	}),
 
 	kit: {
 		adapter: adapter(),
 		alias: {
-			'$stores': 'src/stores',
+			$stores: 'src/stores',
 			'$stores/*': 'src/stores/*',
-			'$utils': 'src/utils',
+			$utils: 'src/utils',
 			'$utils/*': 'src/utils/*',
-			'$config': 'src/config',
-			'$config/*': 'src/config/*',
-		},
-
+			$config: 'src/config',
+			'$config/*': 'src/config/*'
+		}
 	}
 };
 

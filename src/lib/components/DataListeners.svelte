@@ -5,7 +5,7 @@
 	import { getAllProjects } from '$utils/api/project.util';
 	import { getFirestore } from 'firebase/firestore';
 	import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
-	import { onDestroy, onMount } from 'svelte';
+	import { onDestroy } from 'svelte';
 
 	getAllProjects().then((val) => {
 		$projects = val;

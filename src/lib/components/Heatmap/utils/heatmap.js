@@ -1,11 +1,5 @@
 // @ts-nocheck
-import {
-    getMonthEnd,
-    getMonthStart,
-    getWeekEnd,
-    getWeekStart,
-    normalizeDate,
-} from './date';
+import { getMonthEnd, getMonthStart, getWeekEnd, getWeekStart, normalizeDate } from './date';
 
 /**
  * Divide a calendar into months.
@@ -16,33 +10,31 @@ import {
  * @param {Date|string|number}  options.endDate
  * @param {Date|string|number}  options.startDate
  *
- * @return {Array<Array<Object>>} 
+ * @return {Array<Array<Object>>}
  */
 export function chunkMonths({ allowOverflow, calendar, endDate, startDate }) {
-    let prevMonth = -1;
+	let prevMonth = -1;
 
-    startDate = normalizeDate(startDate);
-    endDate = normalizeDate(endDate);
+	startDate = normalizeDate(startDate);
+	endDate = normalizeDate(endDate);
 
-    return calendar.reduce((acc, day) => {
-        const currentMonth = day.date.getMonth();
+	return calendar.reduce((acc, day) => {
+		const currentMonth = day.date.getMonth();
 
-        if (prevMonth !== currentMonth) {
-            acc.push([]);
-            prevMonth = currentMonth;
-        }
+		if (prevMonth !== currentMonth) {
+			acc.push([]);
+			prevMonth = currentMonth;
+		}
 
-        if (
-            allowOverflow || (
-                (!startDate || day.date >= startDate) &&
-                (!endDate || day.date <= endDate)
-            )
-        ) {
-            acc[acc.length - 1].push(day);
-        }
+		if (
+			allowOverflow ||
+			((!startDate || day.date >= startDate) && (!endDate || day.date <= endDate))
+		) {
+			acc[acc.length - 1].push(day);
+		}
 
-        return acc;
-    }, []);
+		return acc;
+	}, []);
 }
 
 /**
@@ -54,28 +46,26 @@ export function chunkMonths({ allowOverflow, calendar, endDate, startDate }) {
  * @param {Date|string|number}  options.endDate
  * @param {Date|string|number}  options.startDate
  *
- * @return {Array<Array<Object>>} 
+ * @return {Array<Array<Object>>}
  */
 export function chunkWeeks({ allowOverflow, calendar, endDate, startDate }) {
-    startDate = normalizeDate(startDate);
-    endDate = normalizeDate(endDate);
+	startDate = normalizeDate(startDate);
+	endDate = normalizeDate(endDate);
 
-    return calendar.reduce((acc, day, index) => {
-        if (index % 7 === 0) {
-            acc.push([]);
-        }
+	return calendar.reduce((acc, day, index) => {
+		if (index % 7 === 0) {
+			acc.push([]);
+		}
 
-        if (
-            allowOverflow || (
-                (!startDate || day.date >= startDate) &&
-                (!endDate || day.date <= endDate)
-            )
-        ) {
-            acc[acc.length - 1].push(day);
-        }
+		if (
+			allowOverflow ||
+			((!startDate || day.date >= startDate) && (!endDate || day.date <= endDate))
+		) {
+			acc[acc.length - 1].push(day);
+		}
 
-        return acc;
-    }, []);
+		return acc;
+	}, []);
 }
 
 /**
@@ -92,37 +82,37 @@ export function chunkWeeks({ allowOverflow, calendar, endDate, startDate }) {
  * @return {Date}
  */
 export function getCalendar({ colors, data, emptyColor, endDate, startDate, view }) {
-    startDate = startDate ? normalizeDate(startDate) : new Date();
-    endDate = endDate ? normalizeDate(endDate) : new Date();
+	startDate = startDate ? normalizeDate(startDate) : new Date();
+	endDate = endDate ? normalizeDate(endDate) : new Date();
 
-    if (view === 'monthly') {
-        startDate = getMonthStart(startDate);
-        endDate = getMonthEnd(endDate);
-    } else {
-        startDate = getWeekStart(startDate);
-        endDate = getWeekEnd(endDate);
-    }
+	if (view === 'monthly') {
+		startDate = getMonthStart(startDate);
+		endDate = getMonthEnd(endDate);
+	} else {
+		startDate = getWeekStart(startDate);
+		endDate = getWeekEnd(endDate);
+	}
 
-    let max = 0;
-    const startDayOfMonth = startDate.getDate();
-    const totalDays = Math.floor((endDate - startDate) / 86400000) + 1; // 86400000 = 1000 * 60 * 60 * 24
+	let max = 0;
+	const startDayOfMonth = startDate.getDate();
+	const totalDays = Math.floor((endDate - startDate) / 86400000) + 1; // 86400000 = 1000 * 60 * 60 * 24
 
-    return new Array(totalDays)
-        .fill()
-        .map((x, offset) => {
-            const day = getDay({ data, offset, startDate, startDayOfMonth });
+	return new Array(totalDays)
+		.fill()
+		.map((x, offset) => {
+			const day = getDay({ data, offset, startDate, startDayOfMonth });
 
-            if (day.value > max) {
-                max = day.value;
-            }
+			if (day.value > max) {
+				max = day.value;
+			}
 
-            return day;
-        })
-        .map(({ date, value }) => {
-            let color = getColor({ colors, max, value }) || emptyColor;
+			return day;
+		})
+		.map(({ date, value }) => {
+			let color = getColor({ colors, max, value }) || emptyColor;
 
-            return { color, date, value }
-        });
+			return { color, date, value };
+		});
 }
 
 /**
@@ -136,23 +126,23 @@ export function getCalendar({ colors, data, emptyColor, endDate, startDate, view
  * @return {string|null}
  */
 export function getColor({ colors, max, value }) {
-    if (colors.length && value) {
-        let color = colors[0];
+	if (colors.length && value) {
+		let color = colors[0];
 
-        const intencity = value / max;
+		const intencity = value / max;
 
-        for (let i = 1; i < colors.length; i++) {
-            if (intencity < i / colors.length) {
-                return color;
-            }
+		for (let i = 1; i < colors.length; i++) {
+			if (intencity < i / colors.length) {
+				return color;
+			}
 
-            color = colors[i];
-        }
+			color = colors[i];
+		}
 
-        return colors[colors.length - 1];
-    }
+		return colors[colors.length - 1];
+	}
 
-    return null;
+	return null;
 }
 
 /**
@@ -167,17 +157,17 @@ export function getColor({ colors, max, value }) {
  * @return {Object}
  */
 export function getDay({ data, offset, startDate, startDayOfMonth }) {
-    const date = new Date(startDate);
-    date.setDate(startDayOfMonth + offset);
+	const date = new Date(startDate);
+	date.setDate(startDayOfMonth + offset);
 
-    const nextDate = new Date(date);
-    nextDate.setDate(date.getDate() + 1);
+	const nextDate = new Date(date);
+	nextDate.setDate(date.getDate() + 1);
 
-    const value = data.reduce((acc, obj) => {
-        const datapoint = normalizeDate(obj.date);
+	const value = data.reduce((acc, obj) => {
+		const datapoint = normalizeDate(obj.date);
 
-        return datapoint >= date && datapoint < nextDate ? acc + obj.value : acc;
-    }, 0);
+		return datapoint >= date && datapoint < nextDate ? acc + obj.value : acc;
+	}, 0);
 
-    return { date, value };
+	return { date, value };
 }
