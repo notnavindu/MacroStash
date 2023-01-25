@@ -5,6 +5,8 @@
 	import TextInput from '$lib/components/common/TextInput.svelte';
 	import Modal from './index.svelte';
 	import { toSvg } from 'jdenticon';
+	import { PUBLIC_DEMO } from '$env/static/public';
+	import toast from 'svelte-french-toast';
 
 	let loading = false;
 
@@ -13,6 +15,11 @@
 	const dispatch = createEventDispatcher();
 
 	const handleCreateProject = async () => {
+		if (PUBLIC_DEMO == 'true') {
+			dispatch('ProjectCreate');
+			return toast.error('You are not allowed to create projects in demo mode');
+		}
+
 		if (name.length == 0) return;
 
 		loading = true;

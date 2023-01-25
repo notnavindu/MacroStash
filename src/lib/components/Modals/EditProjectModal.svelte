@@ -10,6 +10,8 @@
 	import { LOG_LEVELS, type Event } from '$lib/schemas/event.schema';
 	import Icon from '@iconify/svelte';
 	import { filterConfig } from '$lib/constants/filters.constants';
+	import { PUBLIC_DEMO } from '$env/static/public';
+	import toast from 'svelte-french-toast';
 
 	export let selected: Project;
 
@@ -19,6 +21,11 @@
 	const dispatch = createEventDispatcher();
 
 	const handleSaveProject = async () => {
+		if (PUBLIC_DEMO == 'true') {
+			dispatch('ProjectEdit');
+			return toast.error('You are not allowed to edit projects in demo mode');
+		}
+
 		if (selected.name.length == 0) return;
 
 		loading = true;

@@ -4,8 +4,8 @@
 	import Icon from '@iconify/svelte';
 	import { onDestroy } from 'svelte';
 	import { flip } from 'svelte/animate';
-	import { blur, fade, fly } from 'svelte/transition';
-	import { PUBLIC_DEMO } from '$env/static/public';
+	import { fly } from 'svelte/transition';
+
 	import { onMount } from 'svelte';
 
 	const colors: string[] = Object.keys(filterConfig).map(
@@ -80,8 +80,16 @@
 			{/each}
 		{/if}
 
+		<div class="text-center text-lg mt-12">
+			🚧 This project is still under development.<br /> You can star and watch it on
+			<a class="text-color-blue underline" href="https://github.com/notnavindu/macro-stash"
+				>GitHub</a
+			>
+			to stay updated
+		</div>
+
 		<div class="flex flex-col items-center justify-center mt-12 gap-3">
-			{#if mounted}
+			<!-- {#if mounted}
 				<div>Get Started</div>
 				<div
 					class="flex items-center justify-center gap-4 text-xl"
@@ -110,7 +118,7 @@
 						</button>
 					</a>
 				</div>
-			{/if}
+			{/if} -->
 		</div>
 	</div>
 </main>

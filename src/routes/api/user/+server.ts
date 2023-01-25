@@ -3,10 +3,9 @@ import { getAuth } from 'firebase-admin/auth';
 import { getFirestore } from 'firebase-admin/firestore';
 
 import type { RequestHandler } from './$types';
-import { z } from 'zod';
 
 import { error, json } from '@sveltejs/kit';
-import { projectSchema, type Project } from '$lib/schemas/project.schema';
+import { PUBLIC_DEMO } from '$env/static/public';
 import { config } from '$config/firebaseConfig';
 
 if (getApps().length === 0) {
@@ -28,9 +27,9 @@ export const GET = (async ({ request }) => {
 
 		if (!user) {
 			const count = (await db.collection('users').count().get()).data().count;
-			if (count > 0) throw error(403, 'Unauthorized');
+			if (PUBLIC_DEMO != 'true' && count > 0) throw error(403, 'Unauthorized');
 
-			user = { email: decoded.email, name: decoded.name };
+			user = { email: decoded.email, name: decoded.name, primary: PUBLIC_DEMO != 'true' };
 			await db.collection('users').doc(decoded.uid).set(user);
 		}
 

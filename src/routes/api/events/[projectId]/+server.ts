@@ -9,6 +9,7 @@ import { error, json } from '@sveltejs/kit';
 import { eventSchema, type Event } from '$lib/schemas/event.schema';
 import type { Project } from '$lib/schemas/project.schema';
 import { config } from '$config/firebaseConfig';
+import { PUBLIC_DEMO } from '$env/static/public';
 
 if (getApps().length === 0) {
 	initializeApp({
@@ -17,6 +18,10 @@ if (getApps().length === 0) {
 }
 
 export const POST = (async ({ request, getClientAddress, params }) => {
+	if (PUBLIC_DEMO == 'true') {
+		throw error(400, { message: 'You cannot use this endpoint in demo mode' });
+	}
+
 	const event = (await request.json()) as Partial<Event>;
 
 	const clientIp = getClientAddress();
