@@ -1,5 +1,4 @@
 <script>
-	import { createProject } from '$utils/api/project.util';
 	import { createEventDispatcher } from 'svelte';
 	import Button from '$lib/components/common/Button.svelte';
 	import TextInput from '$lib/components/common/TextInput.svelte';

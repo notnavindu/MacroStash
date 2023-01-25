@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { projects } from '$stores/data.store';
-	import { tweened } from 'svelte/motion';
 	import { projectFilters } from '$stores/filters.store';
 	import Icon from '@iconify/svelte';
 
@@ -9,10 +8,10 @@
 	const setAll = () => {
 		if ($projectFilters.length == $projects.length) return ($projectFilters = []);
 
-		return ($projectFilters = $projects.map((p) => p.id!));
+		return ($projectFilters = $projects.map((p) => p.id));
 	};
 
-	const selectFilter = (val: any) => {
+	const selectFilter = (val: string) => {
 		if ($projectFilters.includes(val)) $projectFilters = $projectFilters.filter((i) => i !== val);
 		else $projectFilters = [...$projectFilters, val];
 	};

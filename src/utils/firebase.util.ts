@@ -18,7 +18,7 @@ import { page } from '$app/stores';
 export const initilizeFirebase = async () => {
 	if ((await get(firebaseStore)) !== null) return;
 
-	let firebaseConfig = {
+	const firebaseConfig = {
 		apiKey: PUBLIC_FIREBASE_APIKEY,
 		authDomain: PUBLIC_FIREBASE_AUTHDOMAIN,
 		projectId: PUBLIC_FIREBASE_PROJECT_ID,

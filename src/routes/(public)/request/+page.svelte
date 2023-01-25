@@ -3,13 +3,16 @@
 	import { firebaseAuthStore } from '$stores/auth.store';
 	import { requestAccess } from '$utils/api/user.util';
 	import Icon from '@iconify/svelte';
+	import toast from 'svelte-french-toast';
 
 	let requested = false;
 
 	const handleRequestClick = async () => {
 		try {
-			await requestAccess(await $firebaseAuthStore.user?.getIdToken()!);
-		} catch (error) {}
+			await requestAccess(await $firebaseAuthStore.user!.getIdToken()!);
+		} catch (error: unknown) {
+			toast.error(error as string);
+		}
 
 		requested = true;
 	};

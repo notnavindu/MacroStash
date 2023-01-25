@@ -17,7 +17,7 @@ if (getApps().length === 0) {
 }
 
 export const POST = (async ({ request, getClientAddress, params }) => {
-	let event = (await request.json()) as Partial<Event>;
+	const event = (await request.json()) as Partial<Event>;
 
 	const clientIp = getClientAddress();
 

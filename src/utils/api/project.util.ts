@@ -19,7 +19,7 @@ export const createProject = async (data: Project) => {
 		}
 	}
 
-	let docRef = doc(collection(getFirestore(), 'projects'));
+	const docRef = doc(collection(getFirestore(), 'projects'));
 
 	await setDoc(docRef, {
 		...data,
