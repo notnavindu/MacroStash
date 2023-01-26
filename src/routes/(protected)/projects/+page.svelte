@@ -7,6 +7,7 @@
 	import { fly } from 'svelte/transition';
 	import EditProjectModal from '$lib/components/Modals/EditProjectModal.svelte';
 	import { projects } from '$stores/data.store';
+	import Icon from '@iconify/svelte';
 
 	let selected: Project | null;
 	let createModalOpen = false;
@@ -45,6 +46,17 @@
 			</div>
 
 			<div class="text-xl">{project.name}</div>
+		</button>
+	{:else}
+		<button
+			on:click={() => (createModalOpen = true)}
+			in:fly={{ y: 50 }}
+			class="w-full aspect-square max-w-[250px] bg-color-gray-light bg-opacity-20 
+			flex items-center justify-center flex-col gap-2 rounded-lg hover:bg-opacity-30"
+		>
+			<div class="text-6xl"><Icon icon="material-symbols:add-box" /></div>
+
+			<div class="text-xl">Create a project</div>
 		</button>
 	{/each}
 </div>

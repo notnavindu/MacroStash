@@ -13,7 +13,6 @@ import {
 } from '$env/static/public';
 import { goto } from '$app/navigation';
 import { handleLogin } from './api/user.util';
-import { page } from '$app/stores';
 
 export const initilizeFirebase = async () => {
 	if ((await get(firebaseStore)) !== null) return;
