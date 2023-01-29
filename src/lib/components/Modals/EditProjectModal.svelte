@@ -34,6 +34,21 @@
 
 		dispatch('ProjectEdit');
 	};
+
+	const copyUrl = (id: string) => {
+		const value = `https://${window.location.host}/api/events/${id}`;
+		navigator.clipboard.writeText(value);
+	};
+
+	const copyConfig = (level: string) => {
+		const value = `
+		{
+			"message": "Add message here",
+			"level": "${level}"
+		}
+		`;
+		navigator.clipboard.writeText(value);
+	};
 </script>
 
 <Modal on:ModalClose>
@@ -55,9 +70,9 @@
 			class="w-full py-2 px-3 bg-color-gray-light bg-opacity-30 rounded-md opacity-75 break-all text-xs md:text-sm flex items-center gap-3 justify-between"
 		>
 			<div>https://{window.location.host}/api/events/{selected.id}</div>
-			<div class="text-lg">
+			<button class="text-lg" on:click={() => copyUrl(selected.id)}>
 				<Icon icon={'material-symbols:content-copy-outline'} />
-			</div>
+			</button>
 		</div>
 	</div>
 
@@ -91,9 +106,9 @@
 				<div>&#125;</div>
 			</div>
 
-			<div class="text-lg">
+			<button on:click={() => copyConfig(selectedLogLevel)} class="text-lg">
 				<Icon icon={'material-symbols:content-copy-outline'} />
-			</div>
+			</button>
 		</div>
 	</div>
 

@@ -51,4 +51,4 @@
 	};
 </script>
 
-<button on:click={sendEvent}> Fuck it </button>
+<button on:click={sendEvent}> Test </button>
