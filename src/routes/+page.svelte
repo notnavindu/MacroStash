@@ -5,6 +5,8 @@
 	import { flip } from 'svelte/animate';
 	import { fly } from 'svelte/transition';
 	import { onMount } from 'svelte';
+	import Icon from '@iconify/svelte';
+	import { PUBLIC_DEMO } from '$env/static/public';
 
 	const colors: string[] = Object.keys(filterConfig).map(
 		(val) => filterConfig[val as Event['level']].color
@@ -77,16 +79,16 @@
 			{/each}
 		{/if}
 
-		<div class="text-center text-lg mt-12">
+		<!-- <div class="text-center text-lg mt-12">
 			🚧 This project is still under development.<br /> You can star and watch it on
 			<a class="text-color-blue underline" href="https://github.com/notnavindu/MacroStash">
 				GitHub
 			</a>
 			to stay updated
-		</div>
+		</div> -->
 
 		<div class="flex flex-col items-center justify-center mt-12 gap-3">
-			<!-- {#if mounted}
+			{#if mounted}
 				<div>Get Started</div>
 				<div
 					class="flex items-center justify-center gap-4 text-xl"
@@ -115,7 +117,7 @@
 						</button>
 					</a>
 				</div>
-			{/if} -->
+			{/if}
 		</div>
 	</div>
 </main>
