@@ -15,6 +15,7 @@ specifiers:
   firebase: ^9.15.0
   firebase-admin: ^11.4.1
   jdenticon: ^3.2.0
+  nanoid: ^4.0.0
   postcss: ^8.4.21
   prettier: ^2.8.2
   prettier-plugin-svelte: ^2.9.0
@@ -37,6 +38,7 @@ dependencies:
   firebase: 9.15.0
   firebase-admin: 11.4.1
   jdenticon: 3.2.0
+  nanoid: 4.0.0
   svelte-french-toast: 1.0.3_svelte@3.55.1
   svelte-heatmap: 1.0.2
   tailwind-scrollbar-hide: 1.1.7
@@ -2790,6 +2792,12 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
     dev: true
+
+  /nanoid/4.0.0:
+    resolution: {integrity: sha512-IgBP8piMxe/gf73RTQx7hmnhwz0aaEXYakvqZyE302IXW3HyVNhdNGC+O2MwMAVhLEnvXlvKtGbtJf6wvHihCg==}
+    engines: {node: ^14 || ^16 || >=18}
+    hasBin: true
+    dev: false
 
   /natural-compare-lite/1.4.0:
     resolution: {integrity: sha512-Tj+HTDSJJKaZnfiuw+iaF9skdPpTo2GtEly5JHnWV/hfv2Qj/9RKsGISQtLh2ox3l5EAGw487hnBee0sIJ6v2g==}

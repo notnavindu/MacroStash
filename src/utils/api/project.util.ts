@@ -40,6 +40,14 @@ export const getAllProjects = async () => {
 };
 
 export const updateProject = async (project: Project) => {
+	try {
+		projectSchema.parse(project);
+	} catch (err) {
+		if (err instanceof z.ZodError) {
+			return toast.error('Parsing error');
+		}
+	}
+
 	return await setDoc(
 		doc(getFirestore(), 'projects', project.id!),
 		{ ...project },

@@ -1,36 +1,48 @@
 <script lang="ts">
-	import { updateProject } from '$utils/api/project.util';
-	import { createEventDispatcher } from 'svelte';
 	import Button from '$lib/components/common/Button.svelte';
 	import TextInput from '$lib/components/common/TextInput.svelte';
+	import { updateProject } from '$utils/api/project.util';
+	import { createEventDispatcher } from 'svelte';
 	import Modal from './index.svelte';
 
-	import { toSvg } from 'jdenticon';
-	import type { Project } from '$lib/schemas/project.schema';
-	import { LOG_LEVELS, type Event } from '$lib/schemas/event.schema';
-	import Icon from '@iconify/svelte';
-	import { filterConfig } from '$lib/constants/filters.constants';
 	import { PUBLIC_DEMO } from '$env/static/public';
+	import { filterConfig } from '$lib/constants/filters.constants';
+	import { LOG_LEVELS, type Event } from '$lib/schemas/event.schema';
+	import type { Project } from '$lib/schemas/project.schema';
+	import Icon from '@iconify/svelte';
+	import { toSvg } from 'jdenticon';
 	import toast from 'svelte-french-toast';
+	import HostnamesEditor from '../common/HostnamesEditor.svelte';
+	import { nanoid } from 'nanoid';
 
 	export let selected: Project;
 
 	let loading = false;
 	let selectedLogLevel: Event['level'] = 'debug';
 
+	let hostnames: any[] = selected.allowedDomains.map((ip) => {
+		return {
+			id: nanoid(),
+			value: ip
+		};
+	});
+
 	const dispatch = createEventDispatcher();
 
 	const handleSaveProject = async () => {
 		if (PUBLIC_DEMO == 'true') {
 			dispatch('ProjectEdit');
-			return toast.error('You are not allowed to edit projects in demo mode');
+			return toast.error('Editing is disabled on demo mode');
 		}
 
 		if (selected.name.length == 0) return;
 
 		loading = true;
 
-		await updateProject({ ...selected });
+		await updateProject({
+			...selected,
+			allowedDomains: hostnames.map((v) => v.value).filter((v) => v.length > 0)
+		});
 
 		dispatch('ProjectEdit');
 	};
@@ -41,14 +53,15 @@
 	};
 
 	const copyConfig = (level: string) => {
-		const value = `
-		{
-			"message": "Add message here",
-			"level": "${level}"
+		const value = `{
+		"message": "Add message here",
+		"level": "${level}"
 		}
 		`;
 		navigator.clipboard.writeText(value);
 	};
+
+	console.log(hostnames);
 </script>
 
 <Modal on:ModalClose>
@@ -64,7 +77,12 @@
 
 	<TextInput bind:value={selected.name} label="Project Name" required />
 
-	<div class="mt-4">
+	<div class="mt-8">
+		<div class="text-sm mb-2 opacity-75">Whitelisted IPs</div>
+		<HostnamesEditor bind:hostnames />
+	</div>
+
+	<div class="mt-8">
 		<div class="text-sm mb-2 opacity-75">Logging URL</div>
 		<div
 			class="w-full py-2 px-3 bg-color-gray-light bg-opacity-30 rounded-md opacity-75 break-all text-xs md:text-sm flex items-center gap-3 justify-between"
@@ -76,7 +94,7 @@
 		</div>
 	</div>
 
-	<div class="mt-4">
+	<div class="mt-8">
 		<div class="text-sm mb-2 opacity-75">Request body</div>
 
 		<div class="flex gap-2 mb-2 text-xl">

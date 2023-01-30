@@ -17,3 +17,24 @@ select,
 a {
 	-webkit-tap-highlight-color: transparent;
 }
+
+/* width */
+::-webkit-scrollbar {
+	width: 5px;
+	height: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: #252525;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: rgb(78, 78, 78);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: rgb(95, 95, 95);
+}

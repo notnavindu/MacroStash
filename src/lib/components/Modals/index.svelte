@@ -19,14 +19,14 @@
 
 <!-- Desktop -->
 <div
-	class="flex flex-col items-center justify-center flex-grow fixed top-0 left-0 w-full h-full p-5 backdrop-blur-lg bg-black bg-opacity-50 z-[10000]"
+	class="flex flex-col items-center justify-center flex-grow fixed top-0 left-0 w-full h-full p-2 md:p-5 backdrop-blur-lg bg-black bg-opacity-50 z-[10000]"
 	on:keydown
 	on:click={close}
 	bind:this={overlay}
 >
 	<div
 		transition:scale={{ start: 0.95, duration: 200, easing: expoOut }}
-		class="w-full max-w-xl bg-zinc-900 border border-zinc-700 overscroll-contain relative {rounded} {$$props.class}"
+		class="w-full max-w-xl  max-h-[600px] bg-zinc-900 border border-zinc-700 relative {rounded} {$$props.class}"
 	>
 		<button
 			type="button"
@@ -37,7 +37,7 @@
 			<Icon icon="carbon:close" />
 		</button>
 
-		<div class="p-6">
+		<div class="p-4 md:p-6 max-h-[600px] overflow-y-auto">
 			<slot />
 		</div>
 	</div>
