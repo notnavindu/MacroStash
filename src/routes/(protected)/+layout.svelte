@@ -7,6 +7,10 @@
 	import Icon from '@iconify/svelte';
 	import { page } from '$app/stores';
 	import DataListeners from '$lib/components/DataListeners.svelte';
+	import axios from 'axios';
+	import { onMount } from 'svelte';
+	import { localVersion } from '$config/version';
+	import toast from 'svelte-french-toast';
 
 	let loggedIn = false;
 	let innerWidth = 0;
@@ -19,6 +23,14 @@
 
 	$: collapsable = innerWidth <= 768;
 	$: $page.url.pathname && (show = false);
+
+	onMount(async () => {
+		let remoteConfig = (await axios.get('https://config-mgr.vercel.app/api/macrostash')).data;
+
+		if (remoteConfig.version > localVersion) {
+			toast('Newer Version Available!', { icon: '⬆️' });
+		}
+	});
 </script>
 
 <svelte:window bind:innerWidth />
