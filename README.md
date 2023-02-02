@@ -1,6 +1,8 @@
 # MacroStash
 
-A tiny self-hostable log stash.
+🚧 Documentation is not complete
+
+![MacroStash](https://socialify.git.ci/notnavindu/MacroStash/image?description=1&descriptionEditable=A%20tiny%20self%20hostable%20log%20stash&font=Inter&forks=1&issues=1&logo=https%3A%2F%2Fmacro-stash.vercel.app%2Flogo.png&name=1&pattern=Plus&pulls=1&stargazers=1&theme=Dark)
 
 ## Good for...
 
