@@ -6,10 +6,21 @@
 	import { page } from '$app/stores';
 	import { firebaseAuthStore } from '$stores/auth.store';
 	import { initilizeFirebase } from '$utils/firebase.util';
-	import { Toaster } from 'svelte-french-toast';
+	import toast, { Toaster } from 'svelte-french-toast';
 	import { Jumper } from 'svelte-loading-spinners';
+	import { onMount } from 'svelte';
+	import axios from 'axios';
+	import { localVersion } from '$config/version';
 
 	if (browser) initilizeFirebase();
+
+	onMount(async () => {
+		let remoteConfig = (await axios.get('https://config-mgr.vercel.app/api/macrostash')).data;
+
+		if (remoteConfig.version > localVersion) {
+			toast('Newer Version Available!', { icon: '⬆️' });
+		}
+	});
 </script>
 
 <Toaster

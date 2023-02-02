@@ -5,6 +5,7 @@
 	import Icon from '@iconify/svelte';
 	import SidebarFilters from './SidebarFilters.svelte';
 	import ProjectFilters from './ProjectFilters.svelte';
+	import Logo from '$lib/icons/logo.svelte';
 
 	export let collapsable = false;
 	export let show = false;
@@ -16,7 +17,12 @@
 		transition:fly={{ x: -300 }}
 	>
 		<div class="w-full text-2xl p-4 mt-4 flex justify-between">
-			<span>MacroStash</span>
+			<div class="flex items-center gap-2">
+				<div class="w-7">
+					<Logo />
+				</div>
+				MacroStash
+			</div>
 
 			{#if collapsable}
 				<button on:click={() => (show = false)}>

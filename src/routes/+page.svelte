@@ -7,6 +7,7 @@
 	import { onMount } from 'svelte';
 	import Icon from '@iconify/svelte';
 	import { PUBLIC_DEMO } from '$env/static/public';
+	import Logo from '$lib/icons/logo.svelte';
 
 	const colors: string[] = Object.keys(filterConfig).map(
 		(val) => filterConfig[val as Event['level']].color
@@ -50,8 +51,16 @@
 
 <main class="w-full min-h-screen bg-color-black-blueish flex items-center justify-center  p-4">
 	<div class="w-full max-w-3xl flex flex-col gap-1 text-white">
-		<div class="text-4xl ">MacroStash</div>
-		<div class="mb-5 opacity-75">A tiny, self-hostable log stash</div>
+		<div class="flex gap-4 items-center mb-5">
+			<div class="w-12">
+				<Logo />
+			</div>
+
+			<div>
+				<div class="text-4xl ">MacroStash</div>
+				<div class="opacity-75">A tiny, self-hostable log stash</div>
+			</div>
+		</div>
 
 		{#if mounted}
 			{#each rows as row, i (row.id)}
