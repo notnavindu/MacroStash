@@ -4,8 +4,6 @@
 	import { updateProject } from '$utils/api/project.util';
 	import { createEventDispatcher } from 'svelte';
 	import Modal from './index.svelte';
-
-	import { PUBLIC_DEMO } from '$env/static/public';
 	import { filterConfig } from '$lib/constants/filters.constants';
 	import { LOG_LEVELS, type Event } from '$lib/schemas/event.schema';
 	import type { Project } from '$lib/schemas/project.schema';
@@ -14,6 +12,7 @@
 	import toast from 'svelte-french-toast';
 	import HostnamesEditor from '../common/HostnamesEditor.svelte';
 	import { nanoid } from 'nanoid';
+	import { isDemo } from '$config/demo';
 
 	export let selected: Project;
 
@@ -30,7 +29,7 @@
 	const dispatch = createEventDispatcher();
 
 	const handleSaveProject = async () => {
-		if (PUBLIC_DEMO == 'true') {
+		if (isDemo) {
 			dispatch('ProjectEdit');
 			return toast.error('Editing is disabled on demo mode');
 		}

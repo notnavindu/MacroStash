@@ -6,8 +6,8 @@
 	import { fly } from 'svelte/transition';
 	import { onMount } from 'svelte';
 	import Icon from '@iconify/svelte';
-	import { PUBLIC_DEMO } from '$env/static/public';
 	import Logo from '$lib/icons/logo.svelte';
+	import { isDemo } from '$config/demo';
 
 	const colors: string[] = Object.keys(filterConfig).map(
 		(val) => filterConfig[val as Event['level']].color
@@ -109,7 +109,7 @@
 						>
 							<Icon icon="material-symbols:play-arrow" />
 
-							{#if PUBLIC_DEMO}
+							{#if isDemo}
 								Demo
 							{/if}
 
