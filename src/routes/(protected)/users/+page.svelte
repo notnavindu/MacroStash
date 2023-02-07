@@ -53,7 +53,9 @@
 	<AddUserModal />
 {/if}
 
-<div class:disabled={loading || isDemo}>
+<div class:disabled={loading}>
+	<div class="text-red-500">Not available in demo mode</div>
+
 	<div class="w-full flex justify-between">
 		<div class="text-3xl">Users</div>
 
