@@ -9,8 +9,9 @@
 
 <button
 	class="w-full bg-color-gray-light text-white h-8 rounded-md flex items-center justify-center select-none overflow-hidden {$$props.class}"
-	class:bg-color-blue={primary}
+	class:!bg-color-blue={primary}
 	class:disabled
+	{disabled}
 	on:click
 >
 	{#if loading}

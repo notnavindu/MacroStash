@@ -1,1 +1,1 @@
-export const localVersion = 0;
+export const localVersion = 1;

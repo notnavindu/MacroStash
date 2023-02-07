@@ -1,5 +1,4 @@
 import { initializeApp, getApps, type ServiceAccount, cert } from 'firebase-admin/app';
-import { getAuth } from 'firebase-admin/auth';
 import { getFirestore } from 'firebase-admin/firestore';
 
 import type { RequestHandler } from '../$types';

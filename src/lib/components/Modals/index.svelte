@@ -19,7 +19,7 @@
 
 <!-- Desktop  -->
 <div
-	class="flex flex-col items-center justify-center flex-grow fixed top-0 left-0 w-full h-full p-2 md:p-5 backdrop-blur-lg bg-black bg-opacity-50 z-[10000]"
+	class="flex flex-col items-center justify-center flex-grow fixed top-0 left-0 w-full h-full p-2 md:p-5 backdrop-blur-lg bg-black bg-opacity-50 z-[10000] text-white"
 	on:keydown
 	on:click={close}
 	bind:this={overlay}
