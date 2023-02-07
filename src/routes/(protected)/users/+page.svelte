@@ -15,7 +15,7 @@
 	let addUserOpen = false;
 
 	onMount(async () => {
-		if (isDemo) return;
+		if (isDemo) return (loading = false);
 		users = await getAllUsers();
 		pendingUsers = await getPendingUsers();
 
@@ -54,7 +54,9 @@
 {/if}
 
 <div class:disabled={loading}>
-	<div class="text-red-500">Not available in demo mode</div>
+	{#if isDemo}
+		<div class="text-red-500">Not available in demo mode</div>
+	{/if}
 
 	<div class="w-full flex justify-between">
 		<div class="text-3xl">Users</div>
