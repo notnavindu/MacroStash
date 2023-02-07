@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { isDemo } from '$config/demo';
 	import AddUserModal from '$lib/components/Modals/AddUserModal.svelte';
 	import type { User } from '$lib/schemas/user.schema';
 	import { approveUser, getAllUsers, getPendingUsers, rejectUser } from '$utils/api/user.util';
@@ -14,6 +15,7 @@
 	let addUserOpen = false;
 
 	onMount(async () => {
+		if (isDemo) return;
 		users = await getAllUsers();
 		pendingUsers = await getPendingUsers();
 
@@ -51,7 +53,7 @@
 	<AddUserModal />
 {/if}
 
-<div class:disabled={loading}>
+<div class:disabled={loading || isDemo}>
 	<div class="w-full flex justify-between">
 		<div class="text-3xl">Users</div>
 
