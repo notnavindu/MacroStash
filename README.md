@@ -14,9 +14,10 @@
 
 ### How to deploy
 
-Use this ⤵️
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fnotnavindu%2FMacroStash&env=PUBLIC_FIREBASE_APIKEY,PUBLIC_FIREBASE_AUTHDOMAIN,PUBLIC_FIREBASE_PROJECT_ID,PUBLIC_FIREBASE_STORAGE_BUCKET,PUBLIC_FIREBASE_MESSAGE_SENDER_ID,PUBLIC_FIREBASE_APP_ID,FIREBASE_SERVICE_ACCOUNT&envDescription=Visit%20this%20link%20to%20find%20how%20to%20get%20these%20values&envLink=https%3A%2F%2Fgithub.com%2Fnotnavindu%2FMacroStash%23environment-variables&project-name=macro-stash&repository-name=macro-stash&demo-title=Macro%20Stash&demo-description=A%20tiny%20self-hostable%20event%20log&demo-url=http%3A%2F%2Fmacro-stash.vercel.app%2F)
+1. Log in to the [demo dashboard](https://macro-stash.vercel.app/events)
+2. Click "Deploy for free" at the bottom right
+3. Follow the instructions
+4. Grab a cookie
 
 ### Environment Variables
 
