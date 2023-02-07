@@ -12,7 +12,7 @@
 
 	<div class="text-color-blue">Step one</div>
 	<div class="w-40 mt-1">
-		<a target="_blank" rel="noreferrer" href="https://github.com/notnavindu/MacroStash">
+		<a target="_blank" rel="noreferrer" href="https://github.com/notnavindu/MacroStash/fork">
 			<Button primary>
 				<div class="flex items-center justify-center gap-2">
 					<Icon icon="carbon:direction-fork" />

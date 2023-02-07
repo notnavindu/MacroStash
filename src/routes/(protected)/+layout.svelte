@@ -26,7 +26,7 @@
 <svelte:window bind:innerWidth />
 
 {#if setupModalOpen}
-	<DeployModal on:ModalClose={() => (setupModalOpen = true)} />
+	<DeployModal on:ModalClose={() => (setupModalOpen = false)} />
 {/if}
 
 {#if loggedIn}
