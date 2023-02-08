@@ -11,6 +11,7 @@
 	import { onMount } from 'svelte';
 	import axios from 'axios';
 	import { localVersion } from '$config/version';
+	import Analytics from '$lib/components/common/Analytics.svelte';
 
 	if (browser) initilizeFirebase();
 
@@ -37,3 +38,5 @@
 {:else}
 	<slot />
 {/if}
+
+<Analytics />
