@@ -17,7 +17,41 @@
 1. Log in to the [demo dashboard](https://macro-stash.vercel.app/events)
 2. Click "Deploy for free" at the bottom right
 3. Follow the instructions
-4. Grab a cookie
+4. Go to the "Firestore" tab in your Firebase dashboard and "Create a database"
+5. Paste the following security rules in the "Rules" tab
+
+```js
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+  	function hasAccount() {
+    	return request.auth != null && exists(/databases/$(database)/documents/users/$(request.auth.uid));
+    }
+
+    match /{document=**} {
+      allow read, write: if false; // other requests are handled by the admin sdk
+    }
+
+    match /events/{eventId} {
+      allow read: if hasAccount();
+    }
+
+    match /projects/{projectId} {
+      allow read, write: if hasAccount();
+    }
+
+    match /users/{userId} {
+      allow read, write: if hasAccount();
+    }
+
+     match /pending_users/{userId} {
+      allow read: if hasAccount();
+    }
+  }
+}
+```
+
+6. Grab a cookie
 
 ### Environment Variables
 
@@ -46,4 +80,8 @@ This is from the Firebase Service Account
 
 ## Logging Events
 
-TODO
+1. After setting up your MacroStash instance, go to `yourdomain.vercel.app/projects` and create a new project
+2. Open a project to view it's API endpoint
+3. Send a POST request to the API endpoint to log events
+
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fgjbae1212%2Fhit-counter&count_bg=%23000000&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
