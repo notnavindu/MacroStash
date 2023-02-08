@@ -47,12 +47,5 @@
 		<div class="h-full p-4 md:p-6" class:ml-72={!collapsable}>
 			<slot />
 		</div>
-
-		<button
-			class="px-3 py-2 rounded-l-lg fixed right-0 bottom-4 z-40 bg-blue-600 text-xs"
-			on:click={() => (setupModalOpen = true)}
-		>
-			Deploy for free
-		</button>
 	</main>
 {/if}

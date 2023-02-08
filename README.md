@@ -49,7 +49,10 @@ service cloud.firestore {
 ```
 
 5. Complete your vercel deployment!
-6. Grab a cookie
+6. Auth Setup
+   1. Go to the `Authentication` tab in your Firebase dashboard and enable `Google` sign-in provider from the "Sign-in method" tab
+   2. In the Authentication Settings page, add your newly deployed vercel project's domain (something.vercel.app) to the "Authorized domains" secion
+7. Grab a cookie
 
 ### Environment Variables
 
@@ -67,6 +70,10 @@ These values are from your Firebase Config
 This is from the Firebase Service Account
 
 - `FIREBASE_SERVICE_ACCOUNT` - Paste your entire Firebase service account `json` file here
+
+Demo mode
+
+- `PUBLIC_DEMO` - set this to `false`
 
 ### Firebase Setup
 
