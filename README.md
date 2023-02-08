@@ -12,11 +12,10 @@
 
 ### How to deploy
 
-1. Log in to the [demo dashboard](https://macro-stash.vercel.app/events)
-2. Click "Deploy for free" at the bottom right
-3. Follow the instructions
-4. Go to the "Firestore" tab in your Firebase dashboard and "Create a database"
-5. Paste the following security rules in the "Rules" tab
+1. Fork this Repo.
+2. Create a new project on [vercel.com](https://vercel.com/) ([guide](https://vercel.com/docs/concepts/projects/overview))
+3. Before deploying, add the environment variables defined in the [environment variables](#environment-variables) section
+4. Create a Firestore database and paste the following security rules in the "Rules" tab
 
 ```js
 rules_version = '2';
@@ -49,6 +48,7 @@ service cloud.firestore {
 }
 ```
 
+5. Complete your vercel deployment!
 6. Grab a cookie
 
 ### Environment Variables
