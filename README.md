@@ -1,7 +1,5 @@
 # MacroStash
 
-🚧 Documentation is not complete
-
 ![MacroStash](https://socialify.git.ci/notnavindu/MacroStash/image?description=1&descriptionEditable=A%20tiny%20self%20hostable%20log%20stash&font=Inter&forks=1&issues=1&logo=https%3A%2F%2Fmacro-stash.vercel.app%2Flogo.png&name=1&pattern=Plus&pulls=1&stargazers=1&theme=Dark)
 
 ## Good for...
@@ -84,4 +82,4 @@ This is from the Firebase Service Account
 2. Open a project to view it's API endpoint
 3. Send a POST request to the API endpoint to log events
 
-[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fgjbae1212%2Fhit-counter&count_bg=%23000000&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fnotnavindu%2FMacroStash&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
